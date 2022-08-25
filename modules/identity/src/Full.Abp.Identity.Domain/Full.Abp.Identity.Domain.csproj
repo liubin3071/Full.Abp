@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>Full.Abp.Identity</RootNamespace>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Identity.Domain" Version="5.3.3" />
+    </ItemGroup>
+</Project>

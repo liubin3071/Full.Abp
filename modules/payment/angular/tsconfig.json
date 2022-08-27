@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@full.Abp/payment-management": [
+        "projects/payment-management/src/public-api.ts"
+      ],
+      "@full.Abp/payment-management/config": [
+        "projects/payment-management/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/payment-management/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/payment-management/src/lib/proxy/*"]
+    }
+  }
+}

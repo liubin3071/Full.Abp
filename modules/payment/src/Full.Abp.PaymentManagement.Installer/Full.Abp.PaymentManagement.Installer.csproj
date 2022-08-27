@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+        <RootNamespace>Full.Abp.PaymentManagement</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Studio.ModuleInstaller" Version="5.3.4" />
+        <PackageReference Include="Volo.Abp.VirtualFileSystem" Version="5.3.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="..\..\Full.Abp.PaymentManagement.abpmdl.json" />
+      <EmbeddedResource Include="..\..\Full.Abp.PaymentManagement.abpmdl.json" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Full.Abp.PaymentManagement.Domain.Shared": {
+      "path": "src/Full.Abp.PaymentManagement.Domain.Shared/Full.Abp.PaymentManagement.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.Domain": {
+      "path": "src/Full.Abp.PaymentManagement.Domain/Full.Abp.PaymentManagement.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.Application.Contracts": {
+      "path": "src/Full.Abp.PaymentManagement.Application.Contracts/Full.Abp.PaymentManagement.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.Application": {
+      "path": "src/Full.Abp.PaymentManagement.Application/Full.Abp.PaymentManagement.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.EntityFrameworkCore": {
+      "path": "src/Full.Abp.PaymentManagement.EntityFrameworkCore/Full.Abp.PaymentManagement.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.MongoDB": {
+      "path": "src/Full.Abp.PaymentManagement.MongoDB/Full.Abp.PaymentManagement.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.HttpApi": {
+      "path": "src/Full.Abp.PaymentManagement.HttpApi/Full.Abp.PaymentManagement.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.HttpApi.Client": {
+      "path": "src/Full.Abp.PaymentManagement.HttpApi.Client/Full.Abp.PaymentManagement.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.TestBase": {
+      "path": "test/Full.Abp.PaymentManagement.TestBase/Full.Abp.PaymentManagement.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.PaymentManagement.EntityFrameworkCore.Tests": {
+      "path": "test/Full.Abp.PaymentManagement.EntityFrameworkCore.Tests/Full.Abp.PaymentManagement.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.PaymentManagement.MongoDB.Tests": {
+      "path": "test/Full.Abp.PaymentManagement.MongoDB.Tests/Full.Abp.PaymentManagement.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.PaymentManagement.Domain.Tests": {
+      "path": "test/Full.Abp.PaymentManagement.Domain.Tests/Full.Abp.PaymentManagement.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.PaymentManagement.Application.Tests": {
+      "path": "test/Full.Abp.PaymentManagement.Application.Tests/Full.Abp.PaymentManagement.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.PaymentManagement.HttpApi.Host": {
+      "path": "host/Full.Abp.PaymentManagement.HttpApi.Host/Full.Abp.PaymentManagement.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.PaymentManagement.Web": {
+      "path": "src/Full.Abp.PaymentManagement.Web/Full.Abp.PaymentManagement.Web.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Full.Abp.PaymentManagement.HttpApi.Client.ConsoleTestApp/Full.Abp.PaymentManagement.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.PaymentManagement.Web.Host": {
+      "path": "host/Full.Abp.PaymentManagement.Web.Host/Full.Abp.PaymentManagement.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.PaymentManagement.IdentityServer": {
+      "path": "host/Full.Abp.PaymentManagement.IdentityServer/Full.Abp.PaymentManagement.IdentityServer.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.PaymentManagement.Host.Shared": {
+      "path": "host/Full.Abp.PaymentManagement.Host.Shared/Full.Abp.PaymentManagement.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.PaymentManagement.Web.Unified": {
+      "path": "host/Full.Abp.PaymentManagement.Web.Unified/Full.Abp.PaymentManagement.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.PaymentManagement.Blazor": {
+      "path": "src/Full.Abp.PaymentManagement.Blazor/Full.Abp.PaymentManagement.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.Blazor.Host": {
+      "path": "host/Full.Abp.PaymentManagement.Blazor.Host/Full.Abp.PaymentManagement.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.PaymentManagement.Blazor.Server": {
+      "path": "src/Full.Abp.PaymentManagement.Blazor.Server/Full.Abp.PaymentManagement.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.Blazor.WebAssembly": {
+      "path": "src/Full.Abp.PaymentManagement.Blazor.WebAssembly/Full.Abp.PaymentManagement.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.PaymentManagement.Blazor.Server.Host": {
+      "path": "host/Full.Abp.PaymentManagement.Blazor.Server.Host/Full.Abp.PaymentManagement.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

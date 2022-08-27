@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="5.3.4" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Full.Abp.PaymentManagement.Blazor\Full.Abp.PaymentManagement.Blazor.csproj" />
+        <ProjectReference Include="..\Full.Abp.PaymentManagement.HttpApi.Client\Full.Abp.PaymentManagement.HttpApi.Client.csproj" />
+    </ItemGroup>
+
+</Project>

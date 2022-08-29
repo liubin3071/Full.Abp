@@ -1,0 +1,14 @@
+﻿@using Volo.Abp.UI.Navigation
+@inherits NavMenuBase
+@if (Menu != null)
+{
+    <MudNavMenu>
+            @foreach (var menuItem in Menu.Items)
+            {
+                <FirstLevelNavMenuItem MenuItem="menuItem" />
+            }
+    </MudNavMenu>
+}
+@code {
+    public override string MenuName => StandardMenus.Main;
+}

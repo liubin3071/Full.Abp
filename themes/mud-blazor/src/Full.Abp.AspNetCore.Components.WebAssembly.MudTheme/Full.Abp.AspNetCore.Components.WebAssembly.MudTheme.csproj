@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\..\..\configureawait.props" />
+    <Import Project="..\..\..\..\common.props" />
+    
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Full.Abp.AspNetCore.Components.WebAssembly.MudTheme</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.Http.Client.IdentityModel.WebAssembly" Version="$(VoloAbpPackageVersion)" />
+        <ProjectReference Include="..\Full.Abp.AspNetCore.Components.Web.MudTheme\Full.Abp.AspNetCore.Components.Web.MudTheme.csproj" />
+    </ItemGroup>
+
+</Project>

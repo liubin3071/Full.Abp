@@ -1,0 +1,39 @@
+﻿@namespace Full.Abp.AspNetCore.Components.Server.MudTheme.Themes.Mud
+@using Volo.Abp.Users
+@using Volo.Abp.MultiTenancy
+@using Microsoft.Extensions.Localization
+@using global::Localization.Resources.AbpUi
+@inject ICurrentUser CurrentUser
+@inject ICurrentTenant CurrentTenant
+@inject IJSRuntime JsRuntime
+@inject NavigationManager Navigation
+@inject IStringLocalizer<AbpUiResource> L
+<AuthorizeView>
+    <Authorized>
+        <MudMenu Color="Color.Inherit" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
+            <ActivatorContent>
+                <MudChip Color="Color.Secondary">
+                    @(CurrentTenant.Name.IsNullOrEmpty() ? "" : CurrentTenant.Name + '\\') @CurrentUser.Name
+                </MudChip>
+            </ActivatorContent>
+            <ChildContent>
+                @if (Menu is not null && Menu.Items.Any())
+                {
+                    @foreach (var menuItem in Menu.Items)
+                    {
+                        <MudMenuItem Href="@menuItem.Url.TrimStart('/', '~')" Target="@menuItem.Target" ForceLoad="true">
+                            @menuItem.DisplayName
+                        </MudMenuItem>
+                    }
+                }
+            </ChildContent>
+        </MudMenu>
+    </Authorized>
+    <NotAuthorized>
+        <MudLink Color="Color.Inherit" Href="Account/login">
+            <MudChip Color="Color.Primary">
+                @L["Login"]
+            </MudChip>
+        </MudLink>
+    </NotAuthorized>
+</AuthorizeView>

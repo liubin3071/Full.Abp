@@ -1,0 +1,44 @@
+﻿@inherits LayoutComponentBase
+
+<Layout Sider>
+    <LayoutSider>
+        <LayoutSiderContent>
+            <Bar Breakpoint="Breakpoint.Desktop" NavigationBreakpoint="Breakpoint.Tablet" Background="Background.Dark" ThemeContrast="ThemeContrast.Dark" Shadow="Shadow.Default"
+                 Mode="BarMode.VerticalInline" CollapseMode="BarCollapseMode.Small">
+                <BarToggler/>
+                <Branding/>
+                <NavMenu/>
+            </Bar>
+        </LayoutSiderContent>
+    </LayoutSider>
+    <Layout>
+        <LayoutHeader Fixed>
+            <Bar Visible="true" Breakpoint="Breakpoint.Desktop" Background="Background.Dark" ThemeContrast="ThemeContrast.Dark">
+                <BarBrand>
+                    @* <BarItem> *@
+                    @*     <BarLink To=""> *@
+                    @*         <BarIcon IconName="IconName.Dashboard"/> *@
+                    @*         Blazorise Demo *@
+                    @*     </BarLink> *@
+                    @* </BarItem> *@
+                </BarBrand>
+                <BarToggler/>
+                <BarMenu>
+                    <BarStart>
+
+                    </BarStart>
+                    <BarEnd>
+                        <NavToolbar/>
+                    </BarEnd>
+                </BarMenu>
+            </Bar>
+        </LayoutHeader>
+        <LayoutContent>
+            <PageAlert/>
+            @Body
+            <UiMessageAlert/>
+            <UiNotificationAlert/>
+            <UiPageProgress/>
+        </LayoutContent>
+    </Layout>
+</Layout>

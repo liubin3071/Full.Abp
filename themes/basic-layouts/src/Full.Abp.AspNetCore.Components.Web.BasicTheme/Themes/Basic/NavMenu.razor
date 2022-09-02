@@ -1,0 +1,23 @@
+﻿<BarMenu>
+    <BarStart>
+        <BarItem>
+            <BarLink To="">
+                <BarIcon IconName="IconName.Dashboard"/>
+                Dashboard
+            </BarLink>
+        </BarItem>
+
+        @if (Menu?.Items != null)
+        {
+            @foreach (var menuItem in Menu.Items)
+            {
+                <BarItem>
+                    <FirstLevelNavMenuItem MenuItem="menuItem"/>
+                </BarItem>
+            }
+        }
+    </BarStart>
+    <BarEnd>
+
+    </BarEnd>
+</BarMenu>

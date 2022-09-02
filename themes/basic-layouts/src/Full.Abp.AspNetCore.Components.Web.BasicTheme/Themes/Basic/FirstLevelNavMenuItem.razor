@@ -1,0 +1,49 @@
+﻿@using Volo.Abp.UI.Navigation
+@{
+    var elementId = MenuItem.ElementId ?? "MenuItem_" + MenuItem.Name.Replace(".", "_");
+    var cssClass = string.IsNullOrEmpty(MenuItem.CssClass) ? string.Empty : MenuItem.CssClass;
+    var disabled = MenuItem.IsDisabled ? "disabled" : string.Empty;
+    var url = MenuItem.Url == null ? "#" : MenuItem.Url.TrimStart('/', '~');
+}
+@if (MenuItem.IsLeaf)
+{
+    <BarLink ElementId="@elementId" To="@url" Class="@($"{cssClass} {disabled}")">
+        @if (MenuItem.Icon != null)
+        {
+            @if (MenuItem.Icon.StartsWith("fa"))
+            {
+                <i class="@MenuItem.Icon b-bar-icon"></i>
+            }
+            else
+            {
+                <BarIcon IconName="@MenuItem.Icon"/>
+            }
+        }
+        @string.Empty @MenuItem.DisplayName
+    </BarLink>
+}
+else
+{
+    <BarDropdown @bind-Visible="@IsSubMenuOpen">
+        <BarDropdownToggle>
+            @if (MenuItem.Icon != null)
+            {
+                @if (MenuItem.Icon.StartsWith("fa"))
+                {
+                    <i class="@MenuItem.Icon b-bar-icon"></i>
+                }
+                else
+                {
+                    <BarIcon IconName="@MenuItem.Icon"></BarIcon>
+                }
+            }
+            @string.Empty @MenuItem.DisplayName
+        </BarDropdownToggle>
+        <BarDropdownMenu>
+            @foreach (var subMenuItem in MenuItem.Items)
+            {
+                <SecondLevelNavMenuItem MenuItem="subMenuItem" OnActive="@OnChildrenActive"/>
+            }
+        </BarDropdownMenu>
+    </BarDropdown>
+}

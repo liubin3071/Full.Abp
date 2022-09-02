@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="5.3.3"/>
-        <PackageReference Include="Volo.Abp.Http.Client.IdentityModel.WebAssembly" Version="5.3.3"/>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="$(VoloAbpPackageVersion)"/>
+        <PackageReference Include="Volo.Abp.Http.Client.IdentityModel.WebAssembly" Version="$(VoloAbpPackageVersion)"/>
         <ProjectReference Include="..\Full.Abp.AspNetCore.Components.Web.BasicTheme\Full.Abp.AspNetCore.Components.Web.BasicTheme.csproj"/>
     </ItemGroup>
 </Project>

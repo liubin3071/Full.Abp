@@ -31,7 +31,17 @@ public class DemoMenuContributor : IMenuContributor
 
         administration.SetSubItemOrder(IdentityMenuNames.GroupName, 2);
         administration.SetSubItemOrder(SettingManagementMenus.GroupName, 3);
-
+        context.Menu.AddItem(
+            new ApplicationMenuItem(
+                "Administration111",
+                "Menu:Administration",
+                icon: "fa fa-wrench"
+            )
+        );
+        var test = new ApplicationMenuItem("Test", "Test", icon: "Home");
+        context.Menu.AddItem(test);
+        
+        test.AddItem(new ApplicationMenuItem("Test1", "Test1","/test1"));
         return Task.CompletedTask;
     }
 }

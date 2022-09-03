@@ -6,6 +6,8 @@ namespace Full.Abp.AspNetCore.Components.Web.BasicTheme.Themes.Basic;
 
 public partial class MainLayout : IDisposable
 {
+    private Bar sideBar;
+
     [CascadingParameter]
     protected Theme Theme { get; set; }
 

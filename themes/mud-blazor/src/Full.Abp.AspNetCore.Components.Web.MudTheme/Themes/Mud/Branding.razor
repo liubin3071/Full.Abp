@@ -1,0 +1,10 @@
+@using Volo.Abp.Ui.Branding
+@inject IBrandingProvider BrandingProvider
+
+<NavLink ActiveClass="d-flex" href="/">
+    @if (!BrandingProvider.LogoUrl.IsNullOrWhiteSpace())
+    {
+        <img src="@BrandingProvider.LogoUrl.TrimStart('/', '~')" alt="@BrandingProvider.AppName">
+    }
+    <MudText Color="Color.Secondary" Typo="Typo.h5" Class="docs-brand-text"> @BrandingProvider.AppName</MudText>
+</NavLink>

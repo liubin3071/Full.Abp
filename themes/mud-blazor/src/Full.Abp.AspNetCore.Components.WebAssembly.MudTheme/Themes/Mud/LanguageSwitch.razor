@@ -1,0 +1,59 @@
+﻿@using System.Collections.Immutable
+@using System.Globalization
+@using Volo.Abp.Localization
+@using Color = MudBlazor.Color
+@using Direction = MudBlazor.Direction
+@inject ILanguageProvider LanguageProvider
+@inject IJSRuntime JsRuntime
+
+@if (_otherLanguages.Any())
+{
+    <MudMenu Color="Color.Inherit" AnchorOrigin="Origin.BottomCenter" TransformOrigin="Origin.TopCenter">
+        <ActivatorContent>
+            <MudChip Color="Color.Secondary">
+                @_currentLanguage.DisplayName
+            </MudChip>
+        </ActivatorContent>
+        <ChildContent>
+            @foreach (var language in _otherLanguages)
+            {
+                <MudMenuItem OnClick="@(async () => await ChangeLanguageAsync(language))">
+                    @language.DisplayName
+                </MudMenuItem>
+            }
+        </ChildContent>
+    </MudMenu>
+}
+
+@code {
+    private IReadOnlyList<LanguageInfo> _otherLanguages = new List<LanguageInfo>();
+    private LanguageInfo _currentLanguage = null!;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var selectedLanguageName = await JsRuntime.InvokeAsync<string>(
+            "localStorage.getItem",
+            "Abp.SelectedLanguage");
+
+        _otherLanguages = await LanguageProvider.GetLanguagesAsync();
+
+        if (!_otherLanguages.Any()) return;
+
+        _currentLanguage = (!selectedLanguageName.IsNullOrWhiteSpace()
+            ? _otherLanguages.FirstOrDefault(l => l.UiCultureName == selectedLanguageName)
+            : _otherLanguages.FirstOrDefault(l => l.UiCultureName == CultureInfo.CurrentUICulture.Name))
+                           ?? _otherLanguages.First();
+
+        _otherLanguages = _otherLanguages.Where(l => l != _currentLanguage).ToImmutableList();
+    }
+
+    private async Task ChangeLanguageAsync(ILanguageInfo language)
+    {
+        await JsRuntime.InvokeVoidAsync(
+            "localStorage.setItem",
+            "Abp.SelectedLanguage", language.UiCultureName);
+
+        await JsRuntime.InvokeVoidAsync("location.reload");
+    }
+
+}

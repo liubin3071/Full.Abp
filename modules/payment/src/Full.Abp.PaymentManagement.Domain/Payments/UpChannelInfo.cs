@@ -1,19 +1,22 @@
 ﻿namespace Full.Abp.PaymentManagement.Payments;
 
-public class PaymentGatewayInfo:IPaymentGateway
+public class PaymentGatewayTransactionInfo : IPaymentGateway
 {
-    public string Name { get; set; }
+    public string GatewayName { get; set; }
 
     public string? ServiceProviderId { get; set; }
 
     public string MerchantId { get; set; }
 
     public string? SubMerchantId { get; set; }
+
+    public string TransactionId { get; set; }
 }
+ 
 
 public interface IPaymentGateway
 {
-    public string Name { get; }
+    public string GatewayName { get; }
 
     public string? ServiceProviderId { get; }
 

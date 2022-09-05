@@ -31,7 +31,7 @@ public static class PaymentManagementDbContextModelCreatingExtensions
             b.HasIndex(q => q.CreationTime);
         });
         */
-        
+
         builder.Entity<Payment>(b =>
         {
             //Configure table & schema name
@@ -40,11 +40,35 @@ public static class PaymentManagementDbContextModelCreatingExtensions
             b.ConfigureByConvention();
 
             //Properties
-            b.Property(payment => payment.Channel).IsRequired();
+            // b.Property(payment => payment.Channel).IsRequired();
             b.Property(payment => payment.Title).IsRequired();
 
             //Relations
-            b.OwnsOne(payment => payment.Gateway).HasIndex();
+            b.OwnsOne(payment => payment.GatewayTransaction, navigationBuilder =>
+            {
+                navigationBuilder.HasIndex(tran => new {
+                    tran.GatewayName,
+                    tran.TransactionId
+                }).IsUnique();
+                
+                navigationBuilder.HasIndex(tran => tran.GatewayName);
+                
+                navigationBuilder.HasIndex(tran => new {
+                    Name = tran.GatewayName,
+                    tran.ServiceProviderId
+                });
+                navigationBuilder.HasIndex(tran => new {
+                    Name = tran.GatewayName,
+                    tran.ServiceProviderId,
+                    tran.MerchantId
+                });
+                navigationBuilder.HasIndex(tran => new {
+                    Name = tran.GatewayName,
+                    tran.ServiceProviderId,
+                    tran.MerchantId,
+                    tran.SubMerchantId
+                });
+            });
 
             b.HasOne(payment => payment.Channel).WithMany().HasForeignKey(payment => payment.ChannelId);
             b.HasMany(payment => payment.Refunds).WithOne().HasForeignKey(refund => refund.PaymentId);
@@ -55,15 +79,35 @@ public static class PaymentManagementDbContextModelCreatingExtensions
                 payment.ChannelTransactionId
             }).IsUnique();
 
-            b.HasIndex(payment => new {
-                payment.Gateway!.Name,
-                payment.GatewayTransactionId
-            }).IsUnique();
-
-            b.HasIndex(payment => payment.Gateway!.Name).IsUnique();
-            b.HasIndex(payment => payment.Gateway!.ServiceProviderId).IsUnique();
-            b.HasIndex(payment => payment.Gateway!.MerchantId).IsUnique();
-            b.HasIndex(payment => payment.Gateway!.SubMerchantId).IsUnique();
+            // b.HasIndex(payment => new {
+            //     payment.Gateway!.Name,
+            //     payment.GatewayTransactionId
+            // }).IsUnique();
+            //
+            // b.HasIndex(payment => new {
+            //     payment.Gateway!.Name,
+            //     payment.Gateway.ServiceProviderId,
+            //     payment.Gateway.MerchantId,
+            //     payment.Gateway.SubMerchantId,
+            //     payment.GatewayTransactionId
+            // }).IsUnique();
+            //
+            // b.HasIndex(payment => payment.Gateway!.Name);
+            // b.HasIndex(payment => new {
+            //     payment.Gateway!.Name,
+            //     payment.Gateway!.ServiceProviderId
+            // });
+            // b.HasIndex(payment => new {
+            //     payment.Gateway!.Name,
+            //     payment.Gateway!.ServiceProviderId,
+            //     payment.Gateway!.MerchantId
+            // });
+            // b.HasIndex(payment => new {
+            //     payment.Gateway!.Name,
+            //     payment.Gateway!.ServiceProviderId,
+            //     payment.Gateway!.MerchantId,
+            //     payment.Gateway!.SubMerchantId
+            // });
         });
 
 
@@ -82,7 +126,7 @@ public static class PaymentManagementDbContextModelCreatingExtensions
 
             //Indexes
             b.HasIndex(gateway => new {
-                gateway.Name,
+                Name = gateway.GatewayName,
                 gateway.ServiceProviderId,
                 gateway.MerchantId,
                 gateway.SubMerchantId
@@ -106,7 +150,7 @@ public static class PaymentManagementDbContextModelCreatingExtensions
             //Indexes
             b.HasIndex(channel => channel.Name);
         });
-        
+
         builder.Entity<Refund>(b =>
         {
             //Configure table & schema name

@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\Full.Abp.PaymentManagement.Application\Full.Abp.PaymentManagement.Application.csproj" />
-    <ProjectReference Include="..\Full.Abp.PaymentManagement.Domain.Tests\Full.Abp.PaymentManagement.Domain.Tests.csproj" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
   </ItemGroup>
 

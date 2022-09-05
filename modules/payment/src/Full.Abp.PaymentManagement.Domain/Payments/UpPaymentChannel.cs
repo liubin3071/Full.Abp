@@ -8,7 +8,7 @@ namespace Full.Abp.PaymentManagement.Payments;
 /// </summary>
 public class PaymentGateway : Entity<Guid>, IPaymentGateway
 {
-    public string Name { get; set; }
+    public string GatewayName { get; set; }
 
     public string? ServiceProviderId { get; set; }
 

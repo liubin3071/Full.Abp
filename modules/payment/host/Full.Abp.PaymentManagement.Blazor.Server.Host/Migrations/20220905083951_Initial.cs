@@ -256,6 +256,49 @@ namespace Full.Abp.PaymentManagement.Blazor.Server.Host.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PaymentManagementPaymentChannels",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ParentId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Comments = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    LastModificationTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastModifierId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    DeleterId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    DeletionTime = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentManagementPaymentChannels", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PaymentManagementPaymentChannels_PaymentManagementPaymentChannels_ParentId",
+                        column: x => x.ParentId,
+                        principalTable: "PaymentManagementPaymentChannels",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentManagementPaymentGateways",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    GatewayName = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ServiceProviderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MerchantId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SubMerchantId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentManagementPaymentGateways", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AbpAuditLogActions",
                 columns: table => new
                 {
@@ -488,6 +531,42 @@ namespace Full.Abp.PaymentManagement.Blazor.Server.Host.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PaymentManagementPayments",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Descriptionn = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    ChannelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChannelTransactionId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    GatewayTransaction_GatewayName = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    GatewayTransaction_ServiceProviderId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    GatewayTransaction_MerchantId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    GatewayTransaction_SubMerchantId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    GatewayTransaction_TransactionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    State = table.Column<int>(type: "int", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PaidTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CancelTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RefundedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExtraProperties = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentManagementPayments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PaymentManagementPayments_PaymentManagementPaymentChannels_ChannelId",
+                        column: x => x.ChannelId,
+                        principalTable: "PaymentManagementPaymentChannels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AbpEntityPropertyChanges",
                 columns: table => new
                 {
@@ -506,6 +585,29 @@ namespace Full.Abp.PaymentManagement.Blazor.Server.Host.Migrations
                         name: "FK_AbpEntityPropertyChanges_AbpEntityChanges_EntityChangeId",
                         column: x => x.EntityChangeId,
                         principalTable: "AbpEntityChanges",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentManagementRefunds",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TenantId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    PaymentId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Amount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreationTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ConcurrencyStamp = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentManagementRefunds", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PaymentManagementRefunds_PaymentManagementPayments_PaymentId",
+                        column: x => x.PaymentId,
+                        principalTable: "PaymentManagementPayments",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -662,6 +764,61 @@ namespace Full.Abp.PaymentManagement.Blazor.Server.Host.Migrations
                 name: "IX_AbpUsers_UserName",
                 table: "AbpUsers",
                 column: "UserName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPaymentChannels_Name",
+                table: "PaymentManagementPaymentChannels",
+                column: "Name");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPaymentChannels_ParentId",
+                table: "PaymentManagementPaymentChannels",
+                column: "ParentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPaymentGateways_GatewayName_ServiceProviderId_MerchantId_SubMerchantId",
+                table: "PaymentManagementPaymentGateways",
+                columns: new[] { "GatewayName", "ServiceProviderId", "MerchantId", "SubMerchantId" },
+                unique: true,
+                filter: "[ServiceProviderId] IS NOT NULL AND [SubMerchantId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPayments_ChannelId_ChannelTransactionId",
+                table: "PaymentManagementPayments",
+                columns: new[] { "ChannelId", "ChannelTransactionId" },
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPayments_GatewayTransaction_GatewayName",
+                table: "PaymentManagementPayments",
+                column: "GatewayTransaction_GatewayName");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPayments_GatewayTransaction_GatewayName_GatewayTransaction_ServiceProviderId",
+                table: "PaymentManagementPayments",
+                columns: new[] { "GatewayTransaction_GatewayName", "GatewayTransaction_ServiceProviderId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPayments_GatewayTransaction_GatewayName_GatewayTransaction_ServiceProviderId_GatewayTransaction_MerchantId",
+                table: "PaymentManagementPayments",
+                columns: new[] { "GatewayTransaction_GatewayName", "GatewayTransaction_ServiceProviderId", "GatewayTransaction_MerchantId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPayments_GatewayTransaction_GatewayName_GatewayTransaction_ServiceProviderId_GatewayTransaction_MerchantId_~",
+                table: "PaymentManagementPayments",
+                columns: new[] { "GatewayTransaction_GatewayName", "GatewayTransaction_ServiceProviderId", "GatewayTransaction_MerchantId", "GatewayTransaction_SubMerchantId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementPayments_GatewayTransaction_GatewayName_GatewayTransaction_TransactionId",
+                table: "PaymentManagementPayments",
+                columns: new[] { "GatewayTransaction_GatewayName", "GatewayTransaction_TransactionId" },
+                unique: true,
+                filter: "[GatewayTransaction_GatewayName] IS NOT NULL AND [GatewayTransaction_TransactionId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PaymentManagementRefunds_PaymentId",
+                table: "PaymentManagementRefunds",
+                column: "PaymentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -715,6 +872,12 @@ namespace Full.Abp.PaymentManagement.Blazor.Server.Host.Migrations
                 name: "AbpUserTokens");
 
             migrationBuilder.DropTable(
+                name: "PaymentManagementPaymentGateways");
+
+            migrationBuilder.DropTable(
+                name: "PaymentManagementRefunds");
+
+            migrationBuilder.DropTable(
                 name: "AbpEntityChanges");
 
             migrationBuilder.DropTable(
@@ -730,7 +893,13 @@ namespace Full.Abp.PaymentManagement.Blazor.Server.Host.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
+                name: "PaymentManagementPayments");
+
+            migrationBuilder.DropTable(
                 name: "AbpAuditLogs");
+
+            migrationBuilder.DropTable(
+                name: "PaymentManagementPaymentChannels");
         }
     }
 }

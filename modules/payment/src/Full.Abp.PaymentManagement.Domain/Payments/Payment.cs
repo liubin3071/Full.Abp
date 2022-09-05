@@ -24,12 +24,8 @@ public class Payment : AggregateRoot<Guid>, IMultiTenant, IHasCreationTime
     /// </summary>
     public string ChannelTransactionId { get; set; }
 
-    public PaymentGatewayInfo? Gateway { get; set; }
+    public PaymentGatewayTransactionInfo? GatewayTransaction { get; set; }
 
-    /// <summary>
-    /// 外部支付渠道唯一业务Id
-    /// </summary>
-    public string? GatewayTransactionId { get; set; }
     public ICollection<Refund> Refunds { get; set; }
 
     public ChargeState State { get; set; }

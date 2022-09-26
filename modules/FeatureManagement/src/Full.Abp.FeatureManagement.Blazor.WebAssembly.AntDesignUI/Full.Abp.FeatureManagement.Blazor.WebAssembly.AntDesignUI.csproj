@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.FeatureManagement.HttpApi.Client" Version="$(VoloAbpPackageVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\AntDesignTheme\src\Full.Abp.AspnetCore.Components.WebAssembly.AntDesignTheme\Full.Abp.AspnetCore.Components.WebAssembly.AntDesignTheme.csproj" />
+        <ProjectReference Include="..\Full.Abp.FeatureManagement.Blazor.AntDesignUI\Full.Abp.FeatureManagement.Blazor.AntDesignUI.csproj" />
+    </ItemGroup>
+
+</Project>

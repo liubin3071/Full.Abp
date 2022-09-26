@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+<!--  <Import Project="..\..\common.props" />-->
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="$(MicrosoftAspNetCorePackageVersion)" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="$(MicrosoftAspNetCorePackageVersion)" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(VoloAbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.Autofac.WebAssembly" Version="$(VoloAbpPackageVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\IdentityManagement\src\Full.Abp.IdentityManagement.Blazor.WebAssembly.AntDesignUI\Full.Abp.IdentityManagement.Blazor.WebAssembly.AntDesignUI.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Full.Abp.AspnetCore.Components.WebAssembly.AntDesignTheme\Full.Abp.AspnetCore.Components.WebAssembly.AntDesignTheme.csproj" />
+    <ProjectReference Include="..\..\..\..\..\SettingManagement\src\Full.Abp.SettingManagement.Blazor.WebAssembly.AntDesignUI\Full.Abp.SettingManagement.Blazor.WebAssembly.AntDesignUI.csproj" />
+    <ProjectReference Include="..\..\..\..\..\TenantManagement\src\Full.Abp.TenantManagement.Blazor.WebAssembly.AntDesignUI\Full.Abp.TenantManagement.Blazor.WebAssembly.AntDesignUI.csproj" />
+    <ProjectReference Include="..\..\src\BookStore.HttpApi.Client\BookStore.HttpApi.Client.csproj" />
+  </ItemGroup>
+
+</Project>

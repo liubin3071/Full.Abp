@@ -1,0 +1,18 @@
+@using Full.Abp.Categories
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+
+<TreeSelect TItem="CategoryDto"
+            Style="width:100%;"
+            DataSource="Roots" Size="large"
+            Value="@_value"
+            ValueChanged="ValueChanged"
+            Placeholder="@L["PleaseSelect"]"
+            AllowClear
+            TreeDefaultExpandAll
+            ChildrenExpression="node => node.DataItem.Children"
+            TitleExpression="node => node.DataItem.Name"
+            KeyExpression="node => node.DataItem.Id.ToString()"
+            IsLeafExpression="@(node => node.DataItem.Children == null || !node.DataItem.Children.Any())">
+</TreeSelect>
+
+ 

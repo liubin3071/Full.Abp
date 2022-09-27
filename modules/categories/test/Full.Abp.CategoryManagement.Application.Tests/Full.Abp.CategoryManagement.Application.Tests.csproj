@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Full.Abp.CategoryManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Full.Abp.CategoryManagement.Application\Full.Abp.CategoryManagement.Application.csproj" />
+    <ProjectReference Include="..\Full.Abp.CategoryManagement.Domain.Tests\Full.Abp.CategoryManagement.Domain.Tests.csproj" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+  </ItemGroup>
+
+</Project>

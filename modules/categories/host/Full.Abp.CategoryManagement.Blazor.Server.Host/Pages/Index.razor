@@ -1,0 +1,12 @@
+@page "/"
+@using Full.Abp.CategoryManagement.Blazor.Pages.Components
+
+动态加载
+<CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="false" />
+
+静态加载
+<CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="true" />
+@CategoryId
+@code {
+    public Guid CategoryId { get; set; }
+}

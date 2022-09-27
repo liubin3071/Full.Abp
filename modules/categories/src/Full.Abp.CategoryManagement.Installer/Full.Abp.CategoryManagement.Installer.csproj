@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+        <RootNamespace>Full.Abp.CategoryManagement</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.Studio.ModuleInstaller" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.VirtualFileSystem" Version="$(VoloAbpPackageVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="..\..\Full.Abp.CategoryManagement.abpmdl.json" />
+      <EmbeddedResource Include="..\..\Full.Abp.CategoryManagement.abpmdl.json" />
+    </ItemGroup>
+
+</Project>

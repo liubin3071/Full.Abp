@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Full.Abp.TreeStructure.Domain.Shared": {
+      "path": "src/Full.Abp.TreeStructure.Domain.Shared/Full.Abp.TreeStructure.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.Domain": {
+      "path": "src/Full.Abp.TreeStructure.Domain/Full.Abp.TreeStructure.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.Application.Contracts": {
+      "path": "src/Full.Abp.TreeStructure.Application.Contracts/Full.Abp.TreeStructure.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.Application": {
+      "path": "src/Full.Abp.TreeStructure.Application/Full.Abp.TreeStructure.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.EntityFrameworkCore": {
+      "path": "src/Full.Abp.TreeStructure.EntityFrameworkCore/Full.Abp.TreeStructure.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.MongoDB": {
+      "path": "src/Full.Abp.TreeStructure.MongoDB/Full.Abp.TreeStructure.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.HttpApi": {
+      "path": "src/Full.Abp.TreeStructure.HttpApi/Full.Abp.TreeStructure.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.HttpApi.Client": {
+      "path": "src/Full.Abp.TreeStructure.HttpApi.Client/Full.Abp.TreeStructure.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.TestBase": {
+      "path": "test/Full.Abp.TreeStructure.TestBase/Full.Abp.TreeStructure.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.TreeStructure.EntityFrameworkCore.Tests": {
+      "path": "test/Full.Abp.TreeStructure.EntityFrameworkCore.Tests/Full.Abp.TreeStructure.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.TreeStructure.MongoDB.Tests": {
+      "path": "test/Full.Abp.TreeStructure.MongoDB.Tests/Full.Abp.TreeStructure.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.TreeStructure.Domain.Tests": {
+      "path": "test/Full.Abp.TreeStructure.Domain.Tests/Full.Abp.TreeStructure.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.TreeStructure.Application.Tests": {
+      "path": "test/Full.Abp.TreeStructure.Application.Tests/Full.Abp.TreeStructure.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.TreeStructure.HttpApi.Host": {
+      "path": "host/Full.Abp.TreeStructure.HttpApi.Host/Full.Abp.TreeStructure.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.TreeStructure.Web": {
+      "path": "src/Full.Abp.TreeStructure.Web/Full.Abp.TreeStructure.Web.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Full.Abp.TreeStructure.HttpApi.Client.ConsoleTestApp/Full.Abp.TreeStructure.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.TreeStructure.Web.Host": {
+      "path": "host/Full.Abp.TreeStructure.Web.Host/Full.Abp.TreeStructure.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.TreeStructure.IdentityServer": {
+      "path": "host/Full.Abp.TreeStructure.IdentityServer/Full.Abp.TreeStructure.IdentityServer.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.TreeStructure.Host.Shared": {
+      "path": "host/Full.Abp.TreeStructure.Host.Shared/Full.Abp.TreeStructure.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.TreeStructure.Web.Unified": {
+      "path": "host/Full.Abp.TreeStructure.Web.Unified/Full.Abp.TreeStructure.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.TreeStructure.Blazor": {
+      "path": "src/Full.Abp.TreeStructure.Blazor/Full.Abp.TreeStructure.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.Blazor.Host": {
+      "path": "host/Full.Abp.TreeStructure.Blazor.Host/Full.Abp.TreeStructure.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.TreeStructure.Blazor.Server": {
+      "path": "src/Full.Abp.TreeStructure.Blazor.Server/Full.Abp.TreeStructure.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.Blazor.WebAssembly": {
+      "path": "src/Full.Abp.TreeStructure.Blazor.WebAssembly/Full.Abp.TreeStructure.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.TreeStructure.Blazor.Server.Host": {
+      "path": "host/Full.Abp.TreeStructure.Blazor.Server.Host/Full.Abp.TreeStructure.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

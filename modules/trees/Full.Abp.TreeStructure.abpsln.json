@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Full.Abp.TreeStructure": {
+      "path": "Full.Abp.TreeStructure.abpmdl.json"
+    }
+  }
+}

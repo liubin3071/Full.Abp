@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Full.Abp.CategoryManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(VoloAbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\Full.Abp.CategoryManagement.Application.Contracts\Full.Abp.CategoryManagement.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Full.Abp.CategoryManagement.Domain\Full.Abp.CategoryManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

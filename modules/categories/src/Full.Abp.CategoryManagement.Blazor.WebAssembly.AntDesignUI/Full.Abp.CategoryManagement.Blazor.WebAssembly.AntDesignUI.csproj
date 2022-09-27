@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Full.Abp.CategoryManagement.Blazor.WebAssembly.AntDesignUI</RootNamespace>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\Full.Abp.CategoryManagement.Blazor.AntDesignUI\Full.Abp.CategoryManagement.Blazor.AntDesignUI.csproj" />
+        <ProjectReference Include="..\Full.Abp.CategoryManagement.HttpApi.Client\Full.Abp.CategoryManagement.HttpApi.Client.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Full.Abp.Trees</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\Full.Abp.Trees.Domain\Full.Abp.Trees.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

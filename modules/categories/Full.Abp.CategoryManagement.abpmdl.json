@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Full.Abp.CategoryManagement.Domain.Shared": {
+      "path": "src/Full.Abp.CategoryManagement.Domain.Shared/Full.Abp.CategoryManagement.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.Domain": {
+      "path": "src/Full.Abp.CategoryManagement.Domain/Full.Abp.CategoryManagement.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.Application.Contracts": {
+      "path": "src/Full.Abp.CategoryManagement.Application.Contracts/Full.Abp.CategoryManagement.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.Application": {
+      "path": "src/Full.Abp.CategoryManagement.Application/Full.Abp.CategoryManagement.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.EntityFrameworkCore": {
+      "path": "src/Full.Abp.CategoryManagement.EntityFrameworkCore/Full.Abp.CategoryManagement.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.MongoDB": {
+      "path": "src/Full.Abp.CategoryManagement.MongoDB/Full.Abp.CategoryManagement.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.HttpApi": {
+      "path": "src/Full.Abp.CategoryManagement.HttpApi/Full.Abp.CategoryManagement.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.HttpApi.Client": {
+      "path": "src/Full.Abp.CategoryManagement.HttpApi.Client/Full.Abp.CategoryManagement.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.TestBase": {
+      "path": "test/Full.Abp.CategoryManagement.TestBase/Full.Abp.CategoryManagement.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.CategoryManagement.EntityFrameworkCore.Tests": {
+      "path": "test/Full.Abp.CategoryManagement.EntityFrameworkCore.Tests/Full.Abp.CategoryManagement.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.CategoryManagement.MongoDB.Tests": {
+      "path": "test/Full.Abp.CategoryManagement.MongoDB.Tests/Full.Abp.CategoryManagement.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.CategoryManagement.Domain.Tests": {
+      "path": "test/Full.Abp.CategoryManagement.Domain.Tests/Full.Abp.CategoryManagement.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.CategoryManagement.Application.Tests": {
+      "path": "test/Full.Abp.CategoryManagement.Application.Tests/Full.Abp.CategoryManagement.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.CategoryManagement.HttpApi.Host": {
+      "path": "host/Full.Abp.CategoryManagement.HttpApi.Host/Full.Abp.CategoryManagement.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.CategoryManagement.Web": {
+      "path": "src/Full.Abp.CategoryManagement.Web/Full.Abp.CategoryManagement.Web.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Full.Abp.CategoryManagement.HttpApi.Client.ConsoleTestApp/Full.Abp.CategoryManagement.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Full.Abp.CategoryManagement.Web.Host": {
+      "path": "host/Full.Abp.CategoryManagement.Web.Host/Full.Abp.CategoryManagement.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.CategoryManagement.IdentityServer": {
+      "path": "host/Full.Abp.CategoryManagement.IdentityServer/Full.Abp.CategoryManagement.IdentityServer.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.CategoryManagement.Host.Shared": {
+      "path": "host/Full.Abp.CategoryManagement.Host.Shared/Full.Abp.CategoryManagement.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.CategoryManagement.Web.Unified": {
+      "path": "host/Full.Abp.CategoryManagement.Web.Unified/Full.Abp.CategoryManagement.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.CategoryManagement.Blazor": {
+      "path": "src/Full.Abp.CategoryManagement.Blazor/Full.Abp.CategoryManagement.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.Blazor.Host": {
+      "path": "host/Full.Abp.CategoryManagement.Blazor.Host/Full.Abp.CategoryManagement.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Full.Abp.CategoryManagement.Blazor.Server": {
+      "path": "src/Full.Abp.CategoryManagement.Blazor.Server/Full.Abp.CategoryManagement.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.Blazor.WebAssembly": {
+      "path": "src/Full.Abp.CategoryManagement.Blazor.WebAssembly/Full.Abp.CategoryManagement.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "Full.Abp.CategoryManagement.Blazor.Server.Host": {
+      "path": "host/Full.Abp.CategoryManagement.Blazor.Server.Host/Full.Abp.CategoryManagement.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

@@ -1,0 +1,126 @@
+@using Blazorise.Extensions
+@using Full.Abp.Categories
+@using Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
+@using Blazorise.Components
+
+@inject ICategoryAppService CategoryAppService
+@inherits BaseAfterRenderComponent
+
+<Dropdown @ref="Dropdown1" Class="b-is-autocomplete">
+    <TextEdit Text="@Selected?.Name"
+              FocusOut="OnFocusOut"
+              @onclick="SwitchA"/>
+    <DropdownMenu >
+
+        @if (!Roots.IsNullOrEmpty())
+        {
+            <TreeComponent Nodes="Roots" GetChildNodes="GetChildren" DefaultExpandedDeepin="100">
+                <NodeContent Context="context">
+                    <DropdownItem Active="@(Selected?.Id == context.Node.Id)" Value="@context.Node" Clicked="OnSelectedChange">
+                        @for (var i = 0; i < context.NodeComponentRef.Deepin; i++)
+                        {
+                            <text>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                        }
+                        @context.Node.Name
+                    </DropdownItem>
+                </NodeContent>
+            </TreeComponent>
+        }
+    </DropdownMenu>
+</Dropdown>
+
+@code {
+
+    [Parameter]
+    public bool IsStatic { get; set; } = true;
+
+    [Parameter]
+    public Guid SelectedId
+    {
+        get => _selectedId;
+        set
+        {
+            if (_selectedId == value) return;
+            if (value == Selected?.Id) return;
+            Selected = Find(Roots, dto => dto.Id == value);
+            _selectedId = value;
+            SelectedIdChanged.InvokeAsync(value);
+        }
+    }
+
+    [Parameter]
+    public EventCallback<Guid> SelectedIdChanged { get; set; }
+
+    [Parameter]
+    public string DefinitionName { get; set; }
+
+    private IEnumerable<CategoryDto> Roots = new List<CategoryDto>();
+    private Guid _selectedId;
+
+    public Guid? TreeId { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (IsStatic)
+        {
+            Roots = await CategoryAppService.GetTreeAsync(DefinitionName);
+        }
+        else
+        {
+            TreeId = await CategoryAppService.GetTreeIdAsync(DefinitionName);
+            Roots = (await CategoryAppService.GetChildrenAsync(TreeId.Value)).Items;
+        }
+    }
+
+    public async Task<IEnumerable<CategoryDto>> GetChildren(CategoryDto category)
+    {
+        if (IsStatic)
+        {
+            return category.Children;
+        }
+        else
+        {
+            var children = (await CategoryAppService.GetChildrenAsync(category.Id)).Items;
+            category.Children = children;
+            return category.Children;
+        }
+    }
+
+    public CategoryDto? Selected { get; set; }
+
+    private void OnSelectedChange(object v)
+    {
+        Selected = (CategoryDto)v;
+        SelectedId = Selected.Id;
+        StateHasChanged();
+    }
+
+
+    private async Task OnFocusOut()
+    {
+        await Task.Delay(200);
+        await Dropdown1.Hide();
+    }
+
+    private async Task SwitchA(MouseEventArgs arg)
+    {
+        await Dropdown1.Toggle(null);
+    }
+
+    public Dropdown Dropdown1 { get; set; }
+
+
+    private static CategoryDto? Find(IEnumerable<CategoryDto>? dots, Func<CategoryDto, bool> con)
+    {
+    // return dots?.Select(categoryDto => con(categoryDto) ? categoryDto : Find(categoryDto.Children, con)).FirstOrDefault();
+        if (dots == null) return null;
+        foreach (var categoryDto in dots)
+        {
+            if (con(categoryDto)) return categoryDto;
+            var c = Find(categoryDto.Children, con);
+            if (c != null) return c;
+        }
+        return null;
+    }
+
+}

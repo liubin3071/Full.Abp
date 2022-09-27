@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Full.Abp.Trees</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.Trees\Full.Abp.Trees.csproj" />
+    <ProjectReference Include="..\Full.Abp.Trees.Domain.Shared\Full.Abp.Trees.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

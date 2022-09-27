@@ -1,0 +1,17 @@
+@typeparam TNode
+
+<CascadingValue Value="@this">
+    <CascadingValue Value="@store">
+          @foreach (var node in Nodes ?? Enumerable.Empty<TNode>())
+          {
+              <TreeNodeComponent Node="node"
+                             DefaultExpandedDeepin="DefaultExpandedDeepin"
+                             NodeContent="NodeContent"
+                             GetChildNodes="GetChildNodes"
+                             ExpandedNodes="ExpandedNodes"
+                             ExpandedNodesChanged="ExpandedNodesChanged"
+                             HasChildNodes="HasChildNodes">
+              </TreeNodeComponent>
+          }
+    </CascadingValue>
+</CascadingValue>

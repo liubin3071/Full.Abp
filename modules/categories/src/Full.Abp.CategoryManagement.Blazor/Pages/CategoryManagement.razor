@@ -1,0 +1,179 @@
+@page "/CategoryManagement/{CategoryDefinitionName}"
+@using Microsoft.Extensions.Localization
+@using global::Full.Abp.CategoryManagement.Localization
+@using Microsoft.AspNetCore.Components
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@using Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+@inject AbpBlazorMessageLocalizerHelper<CategoryManagementResource> LH
+@using Full.Abp.CategoryManagement.Blazor.Pages.Components
+
+
+<br>
+<Card>
+    <CardHeader>
+        @* ************************* PAGE HEADER ************************* *@
+        <PageHeader Title="@L["Categories"]"
+                    BreadcrumbItems="@BreadcrumbItems"
+                    Toolbar="@Toolbar">
+        </PageHeader>
+    </CardHeader>
+    <CardBody>
+        @* ************************* DATA GRID ************************* *@
+        <Form>
+            <Table Class="b-table table table-striped b-datagrid">
+                <TableHeader ThemeContrast="ThemeContrast.Light">
+                    <TableRow>
+                        @* <TableHeaderCell>Id</TableHeaderCell> *@
+                        <TableHeaderCell>@L["Name"]</TableHeaderCell>
+                        <TableHeaderCell>@L["Seq"]</TableHeaderCell>
+                        <TableHeaderCell>操作</TableHeaderCell>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TreeComponent Nodes="Entities" GetChildNodes="GetChildNodesAsync" DefaultExpandedDeepin="5">
+                        <NodeContent Context="context">
+                            <TableRow>
+                                @* <TableRowHeader>@context.Node.Id</TableRowHeader> *@
+                                <TableRowCell>
+                                    @for (int i = 0; i < context.NodeComponentRef.Deepin; i++)
+                                    {
+                                        <text>&nbsp;&nbsp;&nbsp;&nbsp;</text>
+                                    }
+                                    <Icon Clicked="() => context.NodeComponentRef.Toggle()" Name="@(context.NodeComponentRef.IsExpanded ? IconName.AngleDown : IconName.AngleRight)"></Icon>
+
+                                    @context.Node.Name
+                                </TableRowCell>
+                                <TableRowCell>
+                                    @context.Node.Sequence
+                                </TableRowCell>
+                                <TableRowCell>
+                                    @foreach (var action in EntityActions.Get<CategoryManagement>())
+                                    {
+                                        <EntityActionButton EntityAction="action" Entity="context.Node"/>
+                                    }
+                                </TableRowCell>
+                            </TableRow>
+                        </NodeContent>
+                    </TreeComponent>
+
+                </TableBody>
+            </Table>
+        </Form>
+        @* *@
+        @* <Pagination> *@
+        @*     <PaginationItem Disabled="CurrentPage == 1" @onclick="() => OnDataGridReadAsync(CurrentPage - 1)"> *@
+        @*         <PaginationLink> *@
+        @*             <span aria-hidden="true">«</span> *@
+        @*         </PaginationLink> *@
+        @*     </PaginationItem> *@
+        @*     @{ *@
+        @*         for (var i = 1; i <= PageCount; i++) *@
+        @*         { *@
+        @*             var pageNumberAsString = i.ToString(); *@
+        @*             <PaginationItem @key="pageNumberAsString" Active="CurrentPage == i"> *@
+        @*                 <PaginationLink Page="@pageNumberAsString" @onclick="() => OnDataGridReadAsync(int.Parse(pageNumberAsString))"> *@
+        @*                     @pageNumberAsString *@
+        @*                 </PaginationLink> *@
+        @*             </PaginationItem> *@
+        @*         } *@
+        @*     } *@
+        @*     <PaginationItem Disabled="CurrentPage == PageCount" *@
+        @*                     @onclick="() => OnDataGridReadAsync(CurrentPage + 1)"> *@
+        @*         <PaginationLink > *@
+        @*             <span aria-hidden="true">»</span> *@
+        @*         </PaginationLink> *@
+        @*     </PaginationItem> *@
+        @* </Pagination> *@
+
+
+    </CardBody>
+</Card>
+
+@* ************************* CREATE MODAL ************************* *@
+@if (HasCreatePermission)
+{
+    <Modal @ref="CreateModal" Closing="@ClosingCreateModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["NewRole"]</ModalTitle>
+                    <CloseButton Clicked="CloseCreateModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+                        <Validation MessageLocalizer="@LH.Localize">
+                            <Field>
+                                <FieldLabel>@L["DisplayName:Name"]</FieldLabel>
+                                <TextEdit @bind-Text="@NewEntity.Name" Autofocus="true">
+                                    <Feedback>
+                                        <ValidationError/>
+                                    </Feedback>
+                                </TextEdit>
+                            </Field>
+                        </Validation>
+                        <Validation MessageLocalizer="@LH.Localize">
+                            <Field>
+                                <FieldLabel>@L["DisplayName:Sequence"]</FieldLabel>
+                                <NumericEdit @bind-Value="@NewEntity.Sequence" Autofocus="true">
+                                    <Feedback>
+                                        <ValidationError/>
+                                    </Feedback>
+                                </NumericEdit>
+                            </Field>
+                        </Validation>
+                        @* <Field> *@
+                        @*     <Check TValue="bool" @bind-Checked="@NewEntity.IsEnabled">@L["DisplayName:IsDefault"]</Check> *@
+                        @* </Field> *@
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@CreateEntityAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}
+@* ************************* EDIT MODAL ************************* *@
+@if (HasUpdatePermission)
+{
+    <Modal @ref="EditModal" Closing="@ClosingEditModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["Edit"]</ModalTitle>
+                    <CloseButton Clicked="CloseEditModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@EditValidationsRef" Model="@EditingEntity" ValidateOnLoad="false">
+                        <Validation MessageLocalizer="@LH.Localize">
+                            <Field>
+                                <FieldLabel>@L["DisplayName:Category"]</FieldLabel>
+                                <TextEdit @bind-Text="EditingEntity.Name" Autofocus="true">
+                                    <Feedback>
+                                        <ValidationError/>
+                                    </Feedback>
+                                </TextEdit>
+                            </Field>
+                            <Validation MessageLocalizer="@LH.Localize">
+                                <Field>
+                                    <FieldLabel>@L["DisplayName:Sequence"]</FieldLabel>
+                                    <NumericEdit @bind-Value="@EditingEntity.Sequence" Autofocus="true">
+                                        <Feedback>
+                                            <ValidationError/>
+                                        </Feedback>
+                                    </NumericEdit>
+                                </Field>
+                            </Validation>
+                        </Validation>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseEditModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@UpdateEntityAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}

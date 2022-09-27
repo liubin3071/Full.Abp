@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(VoloAbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.Categories\Full.Abp.Categories.csproj" />
+    <ProjectReference Include="..\Full.Abp.CategoryManagement.Domain.Shared\Full.Abp.CategoryManagement.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

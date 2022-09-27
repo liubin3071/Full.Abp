@@ -1,0 +1,14 @@
+@page "/"
+@using Full.Abp.CategoryManagement.Blazor.AntDesignUI.Pages
+@* 动态加载 *@
+@* <CategorySelect DefinitionName="DemoCat" /> *@
+@*      *@
+
+静态加载
+<StaticCategorySelect DefinitionName="DemoCat" @bind-SelectedId="SelectedId" />
+
+@SelectedId
+@code {
+
+    public Guid? SelectedId { get; set; }
+}

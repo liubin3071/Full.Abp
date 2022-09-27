@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Full.Abp.CategoryManagement": {
+      "path": "Full.Abp.CategoryManagement.abpmdl.json"
+    }
+  }
+}

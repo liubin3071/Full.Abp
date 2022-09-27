@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(VoloAbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.Categories\Full.Abp.Categories.csproj" />
+    <ProjectReference Include="..\..\..\trees\src\Full.Abp.Trees.Domain\Full.Abp.Trees.Domain.csproj" />
+    <ProjectReference Include="..\Full.Abp.CategoryManagement.Domain.Shared\Full.Abp.CategoryManagement.Domain.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

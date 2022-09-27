@@ -1,0 +1,24 @@
+@using Blazorise.Extensions
+@typeparam TNode
+
+<CascadingValue Value="@this">
+
+    @NodeContent(new TreeViewNodeContext<TNode>() { Node = Node, NodeComponentRef = this })
+
+    @if (IsExpanded && HasChildNodes(Node) && !Children.IsNullOrEmpty())
+    {
+        @foreach (var child in Children)
+        {
+            <TreeNodeComponent
+                DefaultExpandedDeepin="DefaultExpandedDeepin"
+                Deepin="@(Deepin + 1)"
+                Node="@child"
+                NodeContent="NodeContent"
+                GetChildNodes="GetChildNodes"
+                ExpandedNodes="ExpandedNodes"
+                ExpandedNodesChanged="ExpandedNodesChanged"
+                HasChildNodes="HasChildNodes"/>
+        }
+    }
+
+</CascadingValue>

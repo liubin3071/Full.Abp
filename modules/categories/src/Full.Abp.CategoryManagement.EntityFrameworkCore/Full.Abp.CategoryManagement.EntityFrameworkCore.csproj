@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Full.Abp.CategoryManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\..\..\trees\src\Full.Abp.Trees.EntityFrameworkCore\Full.Abp.Trees.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Full.Abp.CategoryManagement.Domain\Full.Abp.CategoryManagement.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+@typeparam TItem
+
+@if (EntityAction.Visible(Entity))
+{
+    <Button 
+            Color="@(EntityAction.Color as Color ?? Color.Default)"
+            Clicked="@ActionClickedAsync"
+            Disabled=@EntityAction.Disabled>
+        @if (!string.IsNullOrEmpty(EntityAction.Icon))
+        {
+            <Icon Name="@EntityAction.Icon"/>
+        }
+        @EntityAction.Text
+    </Button>
+}

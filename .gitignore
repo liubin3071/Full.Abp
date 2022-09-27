@@ -327,3 +327,7 @@ deploy/github-api-key.txt
 deploy/_run_all_log.txt
 
 **/wwwroot/libs/*
+
+!**/wwwroot/libs/abp
+**/wwwroot/libs/abp/*
+!**/wwwroot/libs/abp/css

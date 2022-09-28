@@ -11,7 +11,12 @@
               FocusOut="OnFocusOut"
               @onclick="SwitchA"/>
     <DropdownMenu >
-
+        @if (!string.IsNullOrEmpty(DefaultItemText))
+        {
+            <DropdownItem Active="Selected == null" Value="null" Clicked="OnSelectedChange">
+                @DefaultItemText
+            </DropdownItem>
+        }
         @if (!Roots.IsNullOrEmpty())
         {
             <TreeComponent Nodes="Roots" GetChildNodes="GetChildren" DefaultExpandedDeepin="100">
@@ -32,6 +37,9 @@
 @code {
 
     [Parameter]
+    public string? DefaultItemText { get; set; }
+
+    [Parameter]
     public bool IsStatic { get; set; } = true;
 
     [Parameter]
@@ -41,8 +49,10 @@
         set
         {
             if (_selectedId == value) return;
-            if (value == Selected?.Id) return;
-            Selected = Find(Roots, dto => dto.Id == value);
+            if (value != Selected?.Id)
+            {
+                Selected = Find(Roots, dto => dto.Id == value);
+            }
             _selectedId = value;
             SelectedIdChanged.InvokeAsync(value);
         }
@@ -91,7 +101,7 @@
     private void OnSelectedChange(object v)
     {
         Selected = (CategoryDto)v;
-        SelectedId = Selected.Id;
+        SelectedId = Selected?.Id ?? Guid.Empty;
         StateHasChanged();
     }
 

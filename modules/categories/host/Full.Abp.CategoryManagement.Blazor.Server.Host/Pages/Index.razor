@@ -5,7 +5,7 @@
 <CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="false" />
 
 静态加载
-<CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="true" />
+<CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="true" DefaultItemText="请选择" />
 @CategoryId
 @code {
     public Guid CategoryId { get; set; }

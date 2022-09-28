@@ -25,19 +25,14 @@ jobs:
         with:
           dotnet-version: 6.0.x
 
-      - name: Create sln
-        run: |
-            dotnet new sln -n Push_Nupkg --force
-            find . -name *.csproj -exec dotnet sln add {} \;
-
       - name: Restore dependencies
-        run: dotnet restore Push_Nupkg.sln
+        run: dotnet restore ALL.sln
 
       - name: Build sln
-        run: dotnet build Push_Nupkg.sln -c Release --no-restore
+        run: dotnet build ALL.sln -c Release --no-restore
 
       - name: Test sln
-        run: dotnet test Push_Nupkg.sln -c Release --no-build --verbosity normal
+        run: dotnet test ALL.sln -c Release --no-build --verbosity normal
 
       - name: get version and echo to $GITHUB_ENV
         run: |
@@ -47,7 +42,7 @@ jobs:
           echo 'Env.V_VERSION: ${{env.V_VERSION}}'
 
       - name: Pack
-        run: dotnet pack Push_Nupkg.sln -c Release -o Publish -p:PackageVersion=${{env.VERSION}} --no-build
+        run: dotnet pack ALL.sln -c Release -o Publish -p:PackageVersion=${{env.VERSION}} --no-build
 
       - name: Push
         run: dotnet nuget push Publish/*.${{env.VERSION}}.nupkg --skip-duplicate -s https://api.nuget.org/v3/index.json -k ${{ secrets.NUGET_ORG_APIKEY }}

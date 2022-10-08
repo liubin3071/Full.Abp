@@ -1,16 +1,12 @@
 #region Using directives
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
 #endregion
 
-namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
+namespace Full.Abp.BlazoriseUI.Components.Tree
 {
-    public partial class TreeNodeComponent<TNode> : ComponentBase
+    public partial class TreeNodeComponent<TNodeData> : ComponentBase
     {
         #region Members
 
@@ -41,7 +37,7 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
 
         public async Task UpdateChildren()
         {
-            Children = await GetChildNodes(Node);
+            Children = await GetChildren(NodeData);
             await InvokeAsync(StateHasChanged);
         }
 
@@ -54,25 +50,25 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
             }
             else
             {
-                Children = Enumerable.Empty<TNode>();
+                Children = Enumerable.Empty<TNodeData>();
             }
 
             IsExpanded = newExpand;
         }
 
 
-        protected void OnToggleNode(TNode node, bool expand)
+        protected void OnToggleNode(TNodeData nodeData, bool expand)
         {
-            bool expanded = ExpandedNodes.Contains(node);
+            bool expanded = ExpandedNodes.Contains(nodeData);
 
             if (expanded && !expand)
             {
-                ExpandedNodes.Remove(node);
+                ExpandedNodes.Remove(nodeData);
                 ExpandedNodesChanged.InvokeAsync(ExpandedNodes);
             }
             else if (!expanded && expand)
             {
-                ExpandedNodes.Add(node);
+                ExpandedNodes.Add(nodeData);
                 ExpandedNodesChanged.InvokeAsync(ExpandedNodes);
             }
 
@@ -85,25 +81,25 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
 
         [Parameter] public int DefaultExpandedDeepin { get; set; }
 
-        [Parameter] public IEnumerable<TNode> Children { get; set; }
+        [Parameter] public IEnumerable<TNodeData> Children { get; set; }
 
         [Parameter] public int Deepin { get; set; } = 0;
 
-        [Parameter] public TNode Node { get; set; }
+        [Parameter] public TNodeData NodeData { get; set; }
 
-        [Parameter] public RenderFragment<TreeViewNodeContext<TNode>> NodeContent { get; set; }
+        [Parameter] public RenderFragment<TreeViewNodeContext<TNodeData>> NodeContent { get; set; }
 
-        [Parameter] public IList<TNode> ExpandedNodes { get; set; } = new List<TNode>();
+        [Parameter] public IList<TNodeData> ExpandedNodes { get; set; } = new List<TNodeData>();
 
-        [Parameter] public EventCallback<IList<TNode>> ExpandedNodesChanged { get; set; }
+        [Parameter] public EventCallback<IList<TNodeData>> ExpandedNodesChanged { get; set; }
 
-        [Parameter] public Func<TNode, Task<IEnumerable<TNode>>> GetChildNodes { get; set; }
+        [Parameter] public Func<TNodeData, Task<IEnumerable<TNodeData>>> GetChildren { get; set; }
 
-        [Parameter] public Func<TNode, bool> HasChildNodes { get; set; } = node => true;
+        [Parameter] public Func<TNodeData, bool> HasChildren { get; set; } = node => true;
 
         public bool IsExpanded { get; private set; } = false;
 
-        [CascadingParameter] public TreeNodeComponent<TNode> ParentNodeComponent { get; set; }
+        [CascadingParameter] public TreeNodeComponent<TNodeData> ParentNodeComponent { get; set; }
 
         [Parameter] public RenderFragment ChildContent { get; set; }
 

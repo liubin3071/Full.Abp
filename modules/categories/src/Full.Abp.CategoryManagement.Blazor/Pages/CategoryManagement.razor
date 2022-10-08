@@ -3,17 +3,16 @@
 @using global::Full.Abp.CategoryManagement.Localization
 @using Microsoft.AspNetCore.Components
 @using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
-@using Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
 @inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
 @inject AbpBlazorMessageLocalizerHelper<CategoryManagementResource> LH
 @using Full.Abp.CategoryManagement.Blazor.Pages.Components
-
+@using Full.Abp.BlazoriseUI.Components.Tree
 
 <br>
 <Card>
     <CardHeader>
         @* ************************* PAGE HEADER ************************* *@
-        <PageHeader Title="@L["Categories"]"
+        <PageHeader Title="@L[CategoryDefinitionName]"
                     BreadcrumbItems="@BreadcrumbItems"
                     Toolbar="@Toolbar">
         </PageHeader>
@@ -24,33 +23,32 @@
             <Table Class="b-table table table-striped b-datagrid">
                 <TableHeader ThemeContrast="ThemeContrast.Light">
                     <TableRow>
-                        @* <TableHeaderCell>Id</TableHeaderCell> *@
                         <TableHeaderCell>@L["Name"]</TableHeaderCell>
-                        <TableHeaderCell>@L["Seq"]</TableHeaderCell>
+                        <TableHeaderCell>@L["Sequence"]</TableHeaderCell>
                         <TableHeaderCell>操作</TableHeaderCell>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    <TreeComponent Nodes="Entities" GetChildNodes="GetChildNodesAsync" DefaultExpandedDeepin="5">
+                    <TreeComponent Nodes="Entities" GetChildren="GetChildNodesAsync" DefaultExpandedDeepin="5">
                         <NodeContent Context="context">
                             <TableRow>
-                                @* <TableRowHeader>@context.Node.Id</TableRowHeader> *@
+                                @* <TableRowHeader>@context.NodeDatadata.Id</TableRowHeader> *@
                                 <TableRowCell>
-                                    @for (int i = 0; i < context.NodeComponentRef.Deepin; i++)
+                                    @for (int i = 0; i < context.NodeComponent.Deepin; i++)
                                     {
                                         <text>&nbsp;&nbsp;&nbsp;&nbsp;</text>
                                     }
-                                    <Icon Clicked="() => context.NodeComponentRef.Toggle()" Name="@(context.NodeComponentRef.IsExpanded ? IconName.AngleDown : IconName.AngleRight)"></Icon>
+                                    <Icon Clicked="() => context.NodeComponent.Toggle()" Name="@(context.NodeComponent.IsExpanded ? IconName.AngleDown : IconName.AngleRight)"></Icon>
 
-                                    @context.Node.Name
+                                    @context.Nodedata.Name
                                 </TableRowCell>
                                 <TableRowCell>
-                                    @context.Node.Sequence
+                                    @context.Nodedata.Sequence
                                 </TableRowCell>
                                 <TableRowCell>
                                     @foreach (var action in EntityActions.Get<CategoryManagement>())
                                     {
-                                        <EntityActionButton EntityAction="action" Entity="context.Node"/>
+                                        <EntityActionButton EntityAction="action" Entity="context.Nodedata"/>
                                     }
                                 </TableRowCell>
                             </TableRow>
@@ -60,33 +58,6 @@
                 </TableBody>
             </Table>
         </Form>
-        @* *@
-        @* <Pagination> *@
-        @*     <PaginationItem Disabled="CurrentPage == 1" @onclick="() => OnDataGridReadAsync(CurrentPage - 1)"> *@
-        @*         <PaginationLink> *@
-        @*             <span aria-hidden="true">«</span> *@
-        @*         </PaginationLink> *@
-        @*     </PaginationItem> *@
-        @*     @{ *@
-        @*         for (var i = 1; i <= PageCount; i++) *@
-        @*         { *@
-        @*             var pageNumberAsString = i.ToString(); *@
-        @*             <PaginationItem @key="pageNumberAsString" Active="CurrentPage == i"> *@
-        @*                 <PaginationLink Page="@pageNumberAsString" @onclick="() => OnDataGridReadAsync(int.Parse(pageNumberAsString))"> *@
-        @*                     @pageNumberAsString *@
-        @*                 </PaginationLink> *@
-        @*             </PaginationItem> *@
-        @*         } *@
-        @*     } *@
-        @*     <PaginationItem Disabled="CurrentPage == PageCount" *@
-        @*                     @onclick="() => OnDataGridReadAsync(CurrentPage + 1)"> *@
-        @*         <PaginationLink > *@
-        @*             <span aria-hidden="true">»</span> *@
-        @*         </PaginationLink> *@
-        @*     </PaginationItem> *@
-        @* </Pagination> *@
-
-
     </CardBody>
 </Card>
 
@@ -97,14 +68,14 @@
         <ModalContent Centered="true">
             <Form>
                 <ModalHeader>
-                    <ModalTitle>@L["NewRole"]</ModalTitle>
+                    <ModalTitle>@L["New"]</ModalTitle>
                     <CloseButton Clicked="CloseCreateModalAsync"/>
                 </ModalHeader>
                 <ModalBody>
                     <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
                         <Validation MessageLocalizer="@LH.Localize">
                             <Field>
-                                <FieldLabel>@L["DisplayName:Name"]</FieldLabel>
+                                <FieldLabel>@L["Name"]</FieldLabel>
                                 <TextEdit @bind-Text="@NewEntity.Name" Autofocus="true">
                                     <Feedback>
                                         <ValidationError/>
@@ -114,7 +85,7 @@
                         </Validation>
                         <Validation MessageLocalizer="@LH.Localize">
                             <Field>
-                                <FieldLabel>@L["DisplayName:Sequence"]</FieldLabel>
+                                <FieldLabel>@L["Sequence"]</FieldLabel>
                                 <NumericEdit @bind-Value="@NewEntity.Sequence" Autofocus="true">
                                     <Feedback>
                                         <ValidationError/>
@@ -149,7 +120,7 @@
                     <Validations @ref="@EditValidationsRef" Model="@EditingEntity" ValidateOnLoad="false">
                         <Validation MessageLocalizer="@LH.Localize">
                             <Field>
-                                <FieldLabel>@L["DisplayName:Category"]</FieldLabel>
+                                <FieldLabel>@L["Name"]</FieldLabel>
                                 <TextEdit @bind-Text="EditingEntity.Name" Autofocus="true">
                                     <Feedback>
                                         <ValidationError/>
@@ -158,7 +129,7 @@
                             </Field>
                             <Validation MessageLocalizer="@LH.Localize">
                                 <Field>
-                                    <FieldLabel>@L["DisplayName:Sequence"]</FieldLabel>
+                                    <FieldLabel>@L["Sequence"]</FieldLabel>
                                     <NumericEdit @bind-Value="@EditingEntity.Sequence" Autofocus="true">
                                         <Feedback>
                                             <ValidationError/>

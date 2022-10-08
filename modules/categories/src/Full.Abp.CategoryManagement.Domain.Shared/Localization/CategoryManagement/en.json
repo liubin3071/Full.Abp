@@ -1,7 +1,9 @@
 {
   "culture": "en",
   "texts": {
-    "MyAccount":  "My account",
-    "SamplePageMessage": "A sample page for the CategoryManagement module"
+    "CategoryManagement": "Category management",
+    "Permission:CategoryManagement": "Category management",
+    "Name": "Name",
+    "Sequence": "Sequence"
   }
 }

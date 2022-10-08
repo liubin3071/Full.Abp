@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Full.Abp.Categories.Definitions;
 using Full.Abp.CategoryManagement.Localization;
 using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.MultiTenancy;
 using Volo.Abp.UI.Navigation;
 
@@ -26,7 +27,9 @@ public class CategoryManagementMenuContributor : IMenuContributor
     private Task ConfigureMainMenuAsync(MenuConfigurationContext context)
     {
         //Add main menu items.
-        var categoryMenu = new ApplicationMenuItem(CategoryManagementMenus.Prefix, displayName: "CategoryManagement",
+        var l = context.GetLocalizer<CategoryManagementResource>();
+
+        var categoryMenu = new ApplicationMenuItem(CategoryManagementMenus.Prefix, displayName: l["CategoryManagement"],
             icon: "fa fa-globe");
         var administration = context.Menu.GetAdministration();
         administration.AddItem(categoryMenu);
@@ -35,12 +38,10 @@ public class CategoryManagementMenuContributor : IMenuContributor
         var multiTenancySide = currentTenant.GetMultiTenancySide();
 
         var categoryDefinitionManager = context.ServiceProvider.GetRequiredService<ICategoryDefinitionManager>();
-        var l = context.GetLocalizer<CategoryManagementResource>();
         
         foreach (var categoryDefinition in categoryDefinitionManager.GetAll()
                      .Where(c => c.MultiTenancySides.HasFlag(multiTenancySide)))
         {
-            // categoryDefinition.DisplayName.Localize(l);
             categoryMenu.AddItem(new ApplicationMenuItem(categoryDefinition.Name,
                 l[categoryDefinition.Name], url: $"/CategoryManagement/{categoryDefinition.Name}",
                 requiredPermissionName: $"CategoryManagement.{categoryDefinition.Name}"));

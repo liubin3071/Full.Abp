@@ -4,13 +4,13 @@
     <CascadingValue Value="@store">
           @foreach (var node in Nodes ?? Enumerable.Empty<TNode>())
           {
-              <TreeNodeComponent Node="node"
+              <TreeNodeComponent NodeData="node"
                              DefaultExpandedDeepin="DefaultExpandedDeepin"
                              NodeContent="NodeContent"
-                             GetChildNodes="GetChildNodes"
+                             GetChildren="GetChildren"
                              ExpandedNodes="ExpandedNodes"
                              ExpandedNodesChanged="ExpandedNodesChanged"
-                             HasChildNodes="HasChildNodes">
+                             HasChildren="HasChildren">
               </TreeNodeComponent>
           }
     </CascadingValue>

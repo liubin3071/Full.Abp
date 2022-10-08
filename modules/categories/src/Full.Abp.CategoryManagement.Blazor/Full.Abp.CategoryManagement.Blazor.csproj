@@ -12,7 +12,13 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.BlazoriseUI\Full.Abp.BlazoriseUI.csproj" />
         <ProjectReference Include="..\Full.Abp.CategoryManagement.Application.Contracts\Full.Abp.CategoryManagement.Application.Contracts.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Components\Tree\TreeComponent.razor" />
+      <_ContentIncludedByDefault Remove="Pages\Components\Tree\TreeNodeComponent.razor" />
     </ItemGroup>
  
 </Project>

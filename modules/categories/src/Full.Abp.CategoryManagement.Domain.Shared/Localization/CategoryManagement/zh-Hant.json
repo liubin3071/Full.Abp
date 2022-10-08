@@ -1,7 +1,11 @@
 {
   "culture": "zh-Hant",
   "texts": {
-    "MyAccount": "我的賬戶",
-    "SamplePageMessage": "CategoryManagement 模塊的示例頁面"
+    "CategoryManagement": "類別管理",
+    "Permission:CategoryManagement": "類別管理",
+    "Category": "類別",
+    "Categories": "類別",
+    "Name": "名稱",
+    "Sequence": "順序"
   }
 }

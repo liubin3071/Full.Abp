@@ -1,7 +1,11 @@
 {
   "culture": "zh-Hans",
   "texts": {
-    "MyAccount": "我的账户",
-    "SamplePageMessage": "CategoryManagement模块的示例页面"
+    "CategoryManagement": "类别管理",
+    "Permission:CategoryManagement": "类别管理",
+    "Category": "类别",
+    "Categories": "类别",
+    "Name": "名称",
+    "Sequence": "顺序"
   }
 }

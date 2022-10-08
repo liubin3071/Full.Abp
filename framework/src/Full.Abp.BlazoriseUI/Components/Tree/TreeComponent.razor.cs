@@ -1,14 +1,10 @@
 #region Using directives
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 
 #endregion
 
-namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
+namespace Full.Abp.BlazoriseUI.Components.Tree
 {
     public partial class TreeComponent<TNode> : ComponentBase
     {
@@ -39,12 +35,12 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
         [Parameter] public IEnumerable<TNode> Nodes { get; set; }
 
         /// <summary>
-        /// Template to display content for the node
+        /// Template to display content for the nodeData
         /// </summary>
         [Parameter] public RenderFragment<TreeViewNodeContext<TNode>> NodeContent { get; set; }
 
         /// <summary>
-        /// Currently selected TreeComponent item/node.
+        /// Currently selected TreeComponent item/nodeData.
         /// </summary>
         [Parameter]
         public TNode SelectedNode
@@ -63,7 +59,7 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
         }
 
         /// <summary>
-        /// Occurs when the selected TreeComponent node has changed.
+        /// Occurs when the selected TreeComponent nodeData has changed.
         /// </summary>
         [Parameter] public EventCallback<TNode> SelectedNodeChanged { get; set; }
 
@@ -78,16 +74,16 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
         [Parameter] public EventCallback<IList<TNode>> ExpandedNodesChanged { get; set; }
 
         /// <summary>
-        /// Gets the list of child nodes for each node.
+        /// Gets the list of child nodes for each nodeData.
         /// </summary>
         [Parameter]
-        public Func<TNode, Task<IEnumerable<TNode>>> GetChildNodes { get; set; } =
+        public Func<TNode, Task<IEnumerable<TNode>>> GetChildren { get; set; } =
             (node => Task.FromResult(Enumerable.Empty<TNode>())); 
 
         /// <summary>
-        /// Indicates if the node has child elements.
+        /// Indicates if the nodeData has child elements.
         /// </summary>
-        [Parameter] public Func<TNode, bool> HasChildNodes { get; set; } = node => true;
+        [Parameter] public Func<TNode, bool> HasChildren { get; set; } = node => true;
 
         [Parameter] public RenderFragment ChildContent { get; set; }
 

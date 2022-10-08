@@ -225,6 +225,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full.Abp.AspNetCore.Compone
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full.Abp.CategoryManagement.Blazor.Server.Host", "modules\categories\host\Full.Abp.CategoryManagement.Blazor.Server.Host\Full.Abp.CategoryManagement.Blazor.Server.Host.csproj", "{0255FEFB-031C-4F26-8669-5D108FB457BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full.Abp.BlazoriseUI", "framework\src\Full.Abp.BlazoriseUI\Full.Abp.BlazoriseUI.csproj", "{D038A9E6-4E7D-4529-AF0E-98A080079ABE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -539,6 +541,10 @@ Global
 		{0255FEFB-031C-4F26-8669-5D108FB457BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0255FEFB-031C-4F26-8669-5D108FB457BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0255FEFB-031C-4F26-8669-5D108FB457BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D038A9E6-4E7D-4529-AF0E-98A080079ABE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D038A9E6-4E7D-4529-AF0E-98A080079ABE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D038A9E6-4E7D-4529-AF0E-98A080079ABE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D038A9E6-4E7D-4529-AF0E-98A080079ABE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{834DCCAC-320C-473C-BFB3-CFAA4D30A3A2} = {184FCDC8-F75F-4464-A47A-2D92FF6A63E6}
@@ -650,5 +656,6 @@ Global
 		{6933A7A9-90F9-4CE4-9BD1-7CC0F4DA50D1} = {587862C1-CFA6-4C0F-9072-1898A3AD4AA8}
 		{842B30A9-2467-4AA9-9484-0F7E98607CCB} = {587862C1-CFA6-4C0F-9072-1898A3AD4AA8}
 		{0255FEFB-031C-4F26-8669-5D108FB457BB} = {968C4D23-FD61-4CD7-A4D0-845BE652B4F4}
+		{D038A9E6-4E7D-4529-AF0E-98A080079ABE} = {834DCCAC-320C-473C-BFB3-CFAA4D30A3A2}
 	EndGlobalSection
 EndGlobal

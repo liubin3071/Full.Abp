@@ -1,6 +1,6 @@
 @using Blazorise.Extensions
 @using Full.Abp.Categories
-@using Full.Abp.CategoryManagement.Blazor.Pages.Components.Tree
+@using Full.Abp.BlazoriseUI.Components.Tree
 @using Blazorise.Components
 
 @inject ICategoryAppService CategoryAppService
@@ -19,14 +19,14 @@
         }
         @if (!Roots.IsNullOrEmpty())
         {
-            <TreeComponent Nodes="Roots" GetChildNodes="GetChildren" DefaultExpandedDeepin="100">
+            <TreeComponent Nodes="Roots" GetChildren="GetChildren" DefaultExpandedDeepin="100">
                 <NodeContent Context="context">
-                    <DropdownItem Active="@(Selected?.Id == context.Node.Id)" Value="@context.Node" Clicked="OnSelectedChange">
-                        @for (var i = 0; i < context.NodeComponentRef.Deepin; i++)
+                    <DropdownItem Active="@(Selected?.Id == context.Nodedata.Id)" Value="@context.Nodedata" Clicked="OnSelectedChange">
+                        @for (var i = 0; i < context.NodeComponent.Deepin; i++)
                         {
                             <text>&nbsp;&nbsp;&nbsp;&nbsp;</text>
                         }
-                        @context.Node.Name
+                        @context.Nodedata.Name
                     </DropdownItem>
                 </NodeContent>
             </TreeComponent>

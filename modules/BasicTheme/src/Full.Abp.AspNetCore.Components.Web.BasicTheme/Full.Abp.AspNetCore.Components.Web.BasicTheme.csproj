@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <Import Project="..\..\..\..\configureawait.props"/>
-    <Import Project="..\..\..\..\common.props"/>
+    <Import Project="..\..\..\..\configureawait.props" />
+    <Import Project="..\..\..\..\common.props" />
 
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
@@ -9,7 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Volo.Abp.AspNetCore.Components.Web.Theming" Version="$(VoloAbpPackageVersion)"/>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.Web.Theming" Version="$(VoloAbpPackageVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.BlazoriseUI\Full.Abp.BlazoriseUI.csproj" />
     </ItemGroup>
 
 

@@ -1,0 +1,16 @@
+@page "/UiNotificationAlert"
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+<h3>UiNotificationAlert</h3>
+
+<Button Clicked="OpenNotify" Color="Color.Primary">Notify</Button>
+
+@code {
+
+    public int Index { get; set; }
+    private Task OpenNotify()
+    {
+        this.Notify.Info(Index++.ToString());
+        return Task.CompletedTask;
+    }
+
+}

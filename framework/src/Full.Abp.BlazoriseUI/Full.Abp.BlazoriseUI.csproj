@@ -10,13 +10,4 @@
         <PackageReference Include="Volo.Abp.BlazoriseUI" Version="$(VoloAbpPackageVersion)" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Components" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Components\Tree\TreeComponent.razor" />
-      <AdditionalFiles Include="Components\Tree\TreeNodeComponent.razor" />
-    </ItemGroup>
-
 </Project>

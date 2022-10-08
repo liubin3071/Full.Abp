@@ -38,10 +38,10 @@ public class DemoMenuContributor : IMenuContributor
                 icon: "fa fa-wrench"
             )
         );
-        var test = new ApplicationMenuItem("Test", "Test", icon: "Home");
+        var test = new ApplicationMenuItem("Demo", "Demo", icon: "Home");
         context.Menu.AddItem(test);
         
-        test.AddItem(new ApplicationMenuItem("Test1", "Test1","/test1"));
+        test.AddItem(new ApplicationMenuItem("UiNotificationAlert", "UiNotificationAlert","/UiNotificationAlert"));
         return Task.CompletedTask;
     }
 }

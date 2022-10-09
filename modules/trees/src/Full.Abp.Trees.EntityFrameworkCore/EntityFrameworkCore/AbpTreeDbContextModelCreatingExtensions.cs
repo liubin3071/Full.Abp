@@ -5,18 +5,27 @@ namespace Full.Abp.Trees.EntityFrameworkCore;
 
 public static class AbpTreeDbContextModelCreatingExtensions
 {
-    public static void ConfigureTree<TTree, TKey>(this EntityTypeBuilder<TTree> b)
-        where TTree : Tree<TKey>
-    {
-        b.HasIndex(tree => new { tree.ProviderType, tree.ProviderName, tree.ProviderKey }).IsUnique();
-    }
-
-    public static void ConfigureTreeNodeRelation<TRelation, TKey>(this EntityTypeBuilder<TRelation> b)
-        where TRelation : TreeNodeRelation<TKey>
+    public static void ConfigureTreeRelation<TRelation, TKey>(this EntityTypeBuilder<TRelation> b)
+        where TRelation : TreeRelation<TKey>
     {
         b.ConfigureByConvention();
-        b.HasKey(relation => new { relation.Ancestor, relation.Descendant, relation.TreeId });
-        b.HasIndex(relation => relation.Ancestor);
-        b.HasIndex(relation => relation.Descendant);
+        
+        b.HasKey(relation => new {
+            relation.ProviderType,
+            relation.ProviderName,
+            relation.ProviderKey,
+            relation.Ancestor,
+            relation.Descendant,
+        });
+        
+        // indexes
+        b.HasIndex(relation => new {
+            relation.ProviderType, 
+            relation.ProviderName, 
+            relation.ProviderKey,
+            relation.Descendant
+        });
+        
+        b.HasIndex(relation => relation.Distance);
     }
 }

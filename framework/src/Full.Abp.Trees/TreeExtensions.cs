@@ -4,7 +4,31 @@ using System.Linq;
 
 public static class TreeExtensions
 {
-    public static IEnumerable<TTreeNode> ToTree<TTreeNode>(this IEnumerable<TTreeNode> sources,
+    public static IEnumerable<TTreeNode> TreeOrderBy<TTreeNode,TKey>(this IEnumerable<TTreeNode> tree, Func<TTreeNode, TKey> keySelector)
+        where TTreeNode : class, ITreeNode<TTreeNode>
+    {
+        var nodeList = tree.ToList();
+        foreach (var node in nodeList)
+        {
+            node.Children = node.Children.TreeOrderBy(keySelector);
+        }
+
+        return nodeList.OrderBy(keySelector);
+    }
+    
+    public static IEnumerable<TTreeNode> TreeOrderByDescending<TTreeNode,TKey>(this IEnumerable<TTreeNode> tree, Func<TTreeNode, TKey> keySelector)
+        where TTreeNode : ITreeNode<TTreeNode>
+    {
+        var nodeList = tree.ToList();
+        foreach (var node in nodeList)
+        {
+            node.Children.TreeOrderByDescending(keySelector);
+        }
+
+        return nodeList.OrderByDescending(keySelector);
+    }
+    
+    public static List<TTreeNode> ToTreeList<TTreeNode>(this IEnumerable<TTreeNode> sources,
         Func<TTreeNode, TTreeNode?> parentSelector, TTreeNode? rootId = default,
         IEqualityComparer<TTreeNode?>? comparer = null) where TTreeNode : ITreeNode<TTreeNode>
     {
@@ -18,7 +42,7 @@ public static class TreeExtensions
         return roots;
     }
 
-    public static IEnumerable<TTreeNode> ToTree<TTreeNode, TKey>(this IEnumerable<TTreeNode> sources,
+    public static List<TTreeNode> ToTreeList<TTreeNode, TKey>(this IEnumerable<TTreeNode> sources,
         Func<TTreeNode, TKey?> parentKeySelector, Func<TTreeNode, TKey> keySelector,
         TKey? rootKey = default, IEqualityComparer<TKey?>? keyComparer = null)
         where TTreeNode : ITreeNode<TTreeNode>
@@ -33,7 +57,7 @@ public static class TreeExtensions
         return roots;
     }
 
-    public static List<TTreeNode> ToTree<TSource, TKey, TTreeNode>(this IEnumerable<TSource> sources,
+    public static List<TTreeNode> ToTreeList<TSource, TKey, TTreeNode>(this IEnumerable<TSource> sources,
         Func<TSource, TKey?> parentKeySelector, Func<TTreeNode, TKey?> keySelector, Func<TSource, TTreeNode> convertor,
         TKey? rootKey = default, IEqualityComparer<TKey?>? keyComparer = default)
         where TTreeNode : ITreeNode<TTreeNode>

@@ -1,0 +1,27 @@
+@page "/"
+@using Full.Abp.CategoryManagement.Blazor.Pages.Components
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+
+
+@if (!CurrentUser.IsAuthenticated)
+{
+    <a class="btn btn-primary" href="/Account/Login">
+        <i class="fa fa-sign-in"></i> @L["Login"]
+    </a>
+}
+else
+{
+    <div>
+        动态加载
+        <CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="false"/>
+
+        静态加载
+        <CategorySelect DefinitionName="DemoCat" @bind-SelectedId="@CategoryId" IsStatic="true" DefaultItemText="请选择"/>
+        @CategoryId
+    </div>
+}
+
+
+@code {
+    public Guid CategoryId { get; set; }
+}

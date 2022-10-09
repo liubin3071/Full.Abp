@@ -13,15 +13,15 @@ public interface ITreeRepository<TTreeEntity, TKey> : IBasicRepository<TTreeEnti
 {
     Task EnsureCreateTree(string providerType, string providerName, string providerKey);
 
-    Task<TKey> GetTreeIdAsync(string providerType, string providerName, string? providerKey,
+    Task<TKey> GetTreeIdAsync(string providerType, string providerName, string providerKey,
         CancellationToken cancellationToken = default);
 
     Task<List<TreeNodeWrapper<TTreeEntity>>> GetTreeAsync(string providerType, string providerName,
-        string? providerKey,
+        string providerKey,
         bool includeDetails = true, CancellationToken cancellationToken = default);
 
     Task<List<TTreeEntity>> GetAllAsync(string providerType, string providerName,
-        string? providerKey,
+        string providerKey,
         bool includeDetails = true, CancellationToken cancellationToken = default);
 
     Task<List<TTreeEntity>> GetListByIdsAsync(IEnumerable<TKey> ids, bool includeDetails = true,

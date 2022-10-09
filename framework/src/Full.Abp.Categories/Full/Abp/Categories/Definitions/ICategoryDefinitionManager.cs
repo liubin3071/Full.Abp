@@ -4,7 +4,7 @@ public interface ICategoryDefinitionManager
 {
     CategoryDefinition Get(string name);
 
-    CategoryDefinition GetOrNull(string name);
+    CategoryDefinition? GetOrNull(string name);
 
-    IReadOnlyList<CategoryDefinition> GetAll();
+    IEnumerable<CategoryDefinition> GetAll();
 }

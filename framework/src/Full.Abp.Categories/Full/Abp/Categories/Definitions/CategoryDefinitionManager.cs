@@ -38,14 +38,14 @@ public class CategoryDefinitionManager : ICategoryDefinitionManager, ISingletonD
         return accountDefinition;
     }
 
-    public CategoryDefinition GetOrNull(string name)
+    public CategoryDefinition? GetOrNull(string name)
     {
         Check.NotNull(name, nameof(name));
 
         return Definitions.Value.GetOrDefault(name);
     }
     
-    public IReadOnlyList<CategoryDefinition> GetAll()
+    public IEnumerable<CategoryDefinition> GetAll()
     {
         return Definitions.Value.Values.ToImmutableList();
     }

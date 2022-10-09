@@ -104,7 +104,7 @@ public abstract class EfCoreTreeRepositoryBase<TDbContext, TTreeEntity, TTree, T
         });
     }
 
-    public virtual async Task<TKey> GetTreeIdAsync(string providerType, string providerName, string? providerKey,
+    public virtual async Task<TKey> GetTreeIdAsync(string providerType, string providerName, string providerKey,
         CancellationToken cancellationToken = default)
     {
         return await (await GetTreeQueryableAsync())
@@ -114,7 +114,7 @@ public abstract class EfCoreTreeRepositoryBase<TDbContext, TTreeEntity, TTree, T
             .FirstAsync(cancellationToken);
     }
     public virtual async Task<List<TreeNodeWrapper<TTreeEntity>>> GetTreeAsync(string providerType, string providerName,
-        string? providerKey,
+        string providerKey,
         bool includeDetails = true, CancellationToken cancellationToken = default)
     {
         var treeId = await GetTreeIdAsync(providerType, providerName, providerKey, cancellationToken);
@@ -133,7 +133,7 @@ public abstract class EfCoreTreeRepositoryBase<TDbContext, TTreeEntity, TTree, T
             src => new TreeNodeWrapper<TTreeEntity>() { Value = src.Value }, treeId);
     }
     public virtual async Task<List<TTreeEntity>> GetAllAsync(string providerType, string providerName,
-        string? providerKey,
+        string providerKey,
         bool includeDetails = true, CancellationToken cancellationToken = default)
     {
         var treeId = await GetTreeIdAsync(providerType, providerName, providerKey, cancellationToken);

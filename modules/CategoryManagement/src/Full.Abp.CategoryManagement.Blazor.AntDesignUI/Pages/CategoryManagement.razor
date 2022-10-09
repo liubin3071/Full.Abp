@@ -1,0 +1,70 @@
+@page "/CategoryManagement/{DefinitionName}"
+@using global::Full.Abp.CategoryManagement.Localization
+@using Microsoft.AspNetCore.Components
+@using Full.Abp.Categories
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+@inject AbpBlazorMessageLocalizerHelper<CategoryManagementResource> LH
+@inject ICategoryAppService CategoryAppService
+
+<Full.Abp.AspnetCore.Components.Web.AntDesignTheme.Layout.AbpPageHeader Title="@L["Categories"]" BreadcrumbItems="@BreadcrumbItems" Toolbar="@Toolbar"/>
+
+<div class="page-content">
+    <Table DataSource="Entities" TreeChildren="GetChildren" DefaultExpandAllRows DefaultExpandMaxLevel="Int32.MaxValue">
+        <PropertyColumn Property="c => c.Name" Title="@L["Name"]"/>
+        <PropertyColumn Property="c => c.Sequence" Title="@L["Sequence"]" />
+        <ActionColumn>
+            <EntityActions TItem="CategoryDto" Type="ActionType.Button">
+                @foreach (var action in EntityActions.Get<CategoryManagement>())
+                {
+                    <Space>
+                        <SpaceItem>
+                            <Button Disabled="@action.Disabled"
+                                    Icon="@action.Icon"
+                                    OnClick="() => action.Clicked(context)"
+                                    Block="true" 
+                                    Type="@action.Color.ToString()">
+                                @action.Text
+                            </Button>
+                        </SpaceItem>
+                    </Space>
+                }
+            </EntityActions>
+        </ActionColumn>
+    </Table>
+</div>
+
+
+@if (HasCreatePermission)
+{
+    <Modal @ref="CreateModal" Title="@L["New"]" Visible="@CreateModalVisible" OnCancel="@CloseCreateModalAsync" OnOk="CreateEntityAsync">
+        <Form
+            Layout="@FormLayout.Vertical"
+            @ref="@CreateFormRef"
+            Model="@NewEntity">
+
+            <FormItem Label="@L["DisplayName:Name"]">
+                <Input @bind-Value="@context.Name"/>
+            </FormItem>
+            <FormItem Label="@L["DisplayName:Sequence"]">
+                <Input @bind-Value="@context.Sequence"/>
+            </FormItem>
+        </Form>
+    </Modal>
+}
+
+@if (HasUpdatePermission)
+{
+    <Modal @ref="EditModal" Title="@L["Edit"]" Visible="@EditModalVisible" OnCancel="@CloseEditModalAsync" OnOk="UpdateEntityAsync">
+        <Form
+            Layout="@FormLayout.Vertical"
+            @ref="@EditFormRef"
+            Model="@EditingEntity">
+            <FormItem Label="@L["DisplayName:Name"]">
+                <Input @bind-Value="@context.Name"/>
+            </FormItem>
+            <FormItem Label="@L["DisplayName:Sequence"]">
+                <Input @bind-Value="@context.Sequence"/>
+            </FormItem>
+        </Form>
+    </Modal>
+}

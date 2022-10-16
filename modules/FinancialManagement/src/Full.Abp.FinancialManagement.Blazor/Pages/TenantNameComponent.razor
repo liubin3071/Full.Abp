@@ -1,0 +1,33 @@
+@using System;
+@using Full.Abp.FinancialManagement.Accounts
+@using Volo.Abp.Identity
+@using Microsoft.Extensions.Localization
+@using Volo.Abp.Identity.Localization
+@using Volo.Abp.TenantManagement
+
+@inject IStringLocalizer<IdentityResource> L
+@inject ITenantAppService TenantAppService
+
+@(Display ?? "-")
+
+@code {
+
+     
+    [Parameter] public object Data { get; set; }
+
+    public string? Display { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Guid.TryParse(Data.As<AccountDto>().ProviderKey, out var userId))
+        {
+            var user = await TenantAppService.GetAsync(userId);
+            Display = user.Name;
+        }
+        else
+        {
+            Display = Data.As<AccountDto>().ProviderKey;
+        }
+    }
+
+}

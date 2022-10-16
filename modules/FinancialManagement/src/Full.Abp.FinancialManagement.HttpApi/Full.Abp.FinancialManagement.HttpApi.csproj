@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Full.Abp.FinancialManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\Full.Abp.FinancialManagement.Application.Contracts\Full.Abp.FinancialManagement.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

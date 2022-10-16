@@ -1,0 +1,97 @@
+@using System.Diagnostics
+@using Blazorise
+@using Blazorise.Components
+@using Volo.Abp.Identity
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+
+<Autocomplete
+    TItem="IdentityUserDto"
+    TValue="Guid?"
+    AsyncValidator="ValidationAsync"
+    Data="@Users"
+    SearchChanged="OnSearchChanged"
+    TextField="@(item => item?.UserName ?? "")"
+    ValueField="@((item) => item.Id)"
+    SelectedValue="@SelectedId"
+    SelectedValueChanged="OnSelectedChanged"
+    Placeholder="Search..."
+    Filter="AutocompleteFilter.Contains"
+    FreeTyping
+    CustomFilter="@((item, searchValue) => true)">
+    <ItemContent>
+        <Heading Margin="Margin.Is2.FromBottom">@context.Item.UserName</Heading>
+        <Paragraph Margin="Margin.Is2.FromBottom">@context.Item.Email</Paragraph>
+        <Paragraph Margin="Margin.Is2.FromBottom">@context.Item.PhoneNumber</Paragraph>
+        <Paragraph Margin="Margin.Is2.FromBottom">@context.Value</Paragraph>
+    </ItemContent>
+    <NotFoundContent> Sorry... @context was not found! :( </NotFoundContent>
+</Autocomplete>
+
+@code {
+
+    [Parameter]
+    public Guid? SelectedId { get; set; }
+
+    [Parameter]
+    public bool Required { get; set; }
+
+    [Parameter]
+    public EventCallback<Guid?> SelectedIdChanged { get; set; }
+
+    [Inject]
+    public IIdentityUserAppService AppService { get; set; }
+
+    public List<IdentityUserDto> Users { get; set; } = new List<IdentityUserDto>();
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (SelectedId.HasValue)
+        {
+            var user = await AppService.GetAsync(SelectedId.Value);
+            Users.Add(user);
+        }
+    }
+
+    private async Task OnSelectedChanged(Guid? id)
+    {
+        SelectedId = id;
+        await SelectedIdChanged.InvokeAsync(id);
+        await InvokeAsync(StateHasChanged);
+    }
+
+    private async Task OnSearchChanged(string searchText)
+    {
+        if (searchText.IsNullOrWhiteSpace())
+        {
+            SelectedId = null;
+            await InvokeAsync(StateHasChanged);
+            return;
+        }
+        Users = (await AppService.GetListAsync(new GetIdentityUsersInput()
+        {
+            Filter = searchText
+        })).Items.ToList();
+    }
+
+    private Task ValidationAsync(ValidatorEventArgs args, CancellationToken cancellationToken)
+    {
+        cancellationToken.ThrowIfCancellationRequested();
+        if (Required)
+        {
+            if (SelectedId.HasValue)
+            {
+                args.Status = ValidationStatus.Success;
+            }
+            else
+            {
+                args.Status = ValidationStatus.Error;
+            }
+        }
+        else
+        {
+            args.Status = ValidationStatus.None;
+        }
+        return Task.CompletedTask;
+    }
+
+}

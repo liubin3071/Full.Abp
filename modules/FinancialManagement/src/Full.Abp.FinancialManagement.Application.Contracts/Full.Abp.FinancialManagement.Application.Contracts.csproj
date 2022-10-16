@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Full.Abp.FinancialManagement</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="$(VoloAbpPackageVersion)" />
+    <PackageReference Include="Volo.Abp.Authorization" Version="$(VoloAbpPackageVersion)" />
+    <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.Finance\Full.Abp.Finance.csproj" />
+    <ProjectReference Include="..\Full.Abp.FinancialManagement.Domain.Shared\Full.Abp.FinancialManagement.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Permissions\**" />
+    <Compile Include="Permissions\FinancialManagementPermissionDefinitionProvider.cs" />
+    <Compile Include="Permissions\FinancialManagementPermissions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Permissions\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Permissions\**" />
+  </ItemGroup>
+
+</Project>

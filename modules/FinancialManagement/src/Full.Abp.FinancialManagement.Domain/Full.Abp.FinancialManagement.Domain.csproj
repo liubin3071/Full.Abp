@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <RootNamespace>Full.Abp.FinancialManagement</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AutoMapper" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(VoloAbpPackageVersion)" />
+        <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.Finance\Full.Abp.Finance.csproj" />
+        <ProjectReference Include="..\Full.Abp.FinancialManagement.Domain.Shared\Full.Abp.FinancialManagement.Domain.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+@using Full.Abp.FinancialManagement.Accounts
+@if (Data.As<AccountDto>().IsEnabled)
+{
+    <Icon Name="IconName.Check" TextColor="TextColor.Success"></Icon>
+
+}
+else
+{
+    <Icon Name="IconName.Times" TextColor="TextColor.Danger"></Icon>
+
+}
+
+@code {
+    [Parameter] public object Data { get; set; }
+
+}

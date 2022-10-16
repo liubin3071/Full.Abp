@@ -1,0 +1,203 @@
+﻿@page "/FinancialManagement/Accounts/U/{DefinitionName}"
+
+@using Volo.Abp.BlazoriseUI.Components
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@using Full.Abp.FinancialManagement.Localization
+@using Full.Abp.IdentityManagement.Blazor.Components
+@using Full.Abp.FinancialManagement.Accounts
+@inject AbpBlazorMessageLocalizerHelper<FinancialManagementResource> LH
+@inherits AccountManagementBase
+<Card>
+    <CardHeader>
+        @* ************************* PAGE HEADER ************************* *@
+        <PageHeader Title="@L[$"Accounts:{DefinitionName}"]" BreadcrumbItems="@BreadcrumbItems"
+                    Toolbar="@Toolbar">
+        </PageHeader>
+    </CardHeader>
+    <CardBody>
+        <Fields>
+            <Field ColumnSize="ColumnSize.Is3.OnDesktop">
+                <FieldLabel>@L["User"]</FieldLabel>
+                <UserSelect SelectedId="@(Guid.TryParse(GetListInput.ProviderKey, out var userId) ? userId : null)"
+                            SelectedIdChanged="guid => GetListInput.ProviderKey = guid.ToString()"/>
+
+            </Field>
+            <Field ColumnSize="ColumnSize.Is3.OnDesktop">
+                <FieldLabel>@L["Balance"]</FieldLabel>
+                <FieldBody>
+                    <Addons>
+                        <Addon AddonType="AddonType.Body">
+                            <NumericEdit TValue="decimal?" @bind-Value="@GetListInput.MinBalance"/>
+                        </Addon>
+                        <Addon AddonType="AddonType.Start">
+                            <AddonLabel>-</AddonLabel>
+                        </Addon>
+                        <Addon AddonType="AddonType.Body">
+                            <NumericEdit TValue="decimal?" @bind-Value="@GetListInput.MaxBalance"/>
+                        </Addon>
+                    </Addons>
+                </FieldBody>
+            </Field>
+            <Field ColumnSize="ColumnSize.Is3.OnDesktop">
+                <FieldLabel>@L["IsEnabled"]</FieldLabel>
+                <Select TValue="bool?" @bind-SelectedValue="@GetListInput.IsEnabled">
+                    <SelectItem TValue="bool?" Value="@null"></SelectItem>
+                    <SelectItem Value="true">@L["Enabled"]</SelectItem>
+                    <SelectItem Value="false">@L["Disabled"]</SelectItem>
+                </Select>
+            </Field>
+            <Field ColumnSize="ColumnSize.IsAuto" Flex="Flex.AlignContent.End" Horizontal="true">
+                <FieldBody>
+                    <Button Type="ButtonType.Button" Clicked="() => GetListInput = new AccountGetListInput()"
+                            Color="Color.Secondary">
+                        @L["Clear"]
+                    </Button>
+                    <Button Type="ButtonType.Button" Clicked="SearchEntitiesAsync"
+                            Color="Color.Primary">
+                        @L["Search"]
+                    </Button>
+                </FieldBody>
+            </Field>
+        </Fields>
+
+        @* ************************* DATA GRID ************************* *@
+        <AbpExtensibleDataGrid TItem="AccountDto" Data="@Entities" ReadData="@OnDataGridReadAsync"
+                               TotalItems="@TotalCount" ShowPager="true" PageSize="@PageSize" CurrentPage="@CurrentPage"
+                               Columns="@Columns">
+        </AbpExtensibleDataGrid>
+    </CardBody>
+</Card>
+
+
+@* ************************* CREATE MODAL ************************* *@
+@if (HasCreatePermission)
+{
+    <Modal @ref="CreateModal" Closing="@ClosingCreateModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["NewAccount"]</ModalTitle>
+                    <CloseButton Clicked="CloseCreateModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+                        <Field>
+                            <FieldLabel>@L["DisplayName:User"]</FieldLabel>
+                            <UserSelect Required="true"
+                                        SelectedId="@(Guid.TryParse(NewEntity.ProviderKey, out var userId) ? userId : null)"
+                                        SelectedIdChanged="uid => NewEntity.ProviderKey = uid.ToString()"/>
+                        </Field>
+                        <Field>
+                            <Check TValue="bool" @bind-Checked="@NewEntity.IsEnabled">@L["DisplayName:IsEnabled"]</Check>
+                        </Field>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseCreateModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@CreateEntityAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}
+
+
+@* ************************* Edit MODAL ************************* *@
+@if (HasUpdatePermission)
+{
+    <Modal @ref="EditModal" Closing="@ClosingEditModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["Edit"]</ModalTitle>
+                    <CloseButton Clicked="CloseEditModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@EditValidationsRef" Model="@EditingEntity" ValidateOnLoad="false">
+                        <Field>
+                            <Check TValue="bool" @bind-Checked="@EditingEntity.IsEnabled">@L["DisplayName:IsEnabled"]</Check>
+                        </Field>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseEditModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@UpdateEntityAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}
+
+@if (HasIncreasePermission)
+{
+    <Modal @ref="IncreaseModal" Closing="@ClosingIncreaseModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["Increase"]</ModalTitle>
+                    <CloseButton Clicked="CloseIncreaseModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@IncreaseValidationsRef" Model="@IncreaseEntity" ValidateOnLoad="false">
+                        <Field>
+                            <FieldLabel>@L["Amount"]</FieldLabel>
+                            <NumericEdit TValue="decimal" @bind-Value="@IncreaseEntity.Amount"/>
+                        </Field>
+                        <Field>
+                            <FieldLabel>@L["Comments"]</FieldLabel>
+                            <TextEdit @bind-Text="@IncreaseEntity.Comments"/>
+                        </Field>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseIncreaseModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@IncreaseAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}
+
+@if (HasDecreasePermission)
+{
+    <Modal @ref="DecreaseModal" Closing="@ClosingDecreaseModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["Decrease"]</ModalTitle>
+                    <CloseButton Clicked="CloseDecreaseModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@DecreaseValidationsRef" Model="@DecreaseEntity" ValidateOnLoad="false">
+                        <Field>
+                            <FieldLabel>@L["Amount"]</FieldLabel>
+                            <NumericEdit TValue="decimal" @bind-Value="@DecreaseEntity.Amount"/>
+                        </Field>
+                        <Field>
+                            <FieldLabel>@L["Comments"]</FieldLabel>
+                            <TextEdit @bind-Text="@DecreaseEntity.Comments"/>
+                        </Field>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseDecreaseModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@DecreaseAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}
+
+<Modal @ref="ViewEntriesModal" Closing="@ClosingViewEntriesModal">
+    <ModalContent Centered="true">
+        <Form>
+            <ModalHeader>
+                <ModalTitle>@L["Entries"]</ModalTitle>
+                <CloseButton Clicked="CloseViewEntriesModalAsync"/>
+            </ModalHeader>
+            <ModalBody>
+                
+            </ModalBody>
+        </Form>
+    </ModalContent>
+</Modal>

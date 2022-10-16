@@ -1,0 +1,76 @@
+@page "/FinancialManagement/Accounts/{ProviderName}/{DefinitionName}/Entries/{ProviderKey}"
+@page "/FinancialManagement/Accounts/{ProviderName}/{DefinitionName}/Entries"
+
+@using Volo.Abp.BlazoriseUI.Components
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@using Full.Abp.FinancialManagement.Localization
+@using Full.Abp.IdentityManagement.Blazor.Components
+@using Full.Abp.FinancialManagement.Accounts
+@using Full.Abp.FinancialManagement.AccountEntries
+@inject AbpBlazorMessageLocalizerHelper<FinancialManagementResource> LH
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+
+<Card>
+    <CardHeader>
+        @* ************************* PAGE HEADER ************************* *@
+        <PageHeader Title="@L[$"Accounts:{DefinitionName}"]"
+                    BreadcrumbItems="@BreadcrumbItems"
+                    Toolbar="@Toolbar">
+        </PageHeader>
+    </CardHeader>
+    <CardBody>
+        <Fields>
+            <Field ColumnSize="ColumnSize.Is3.OnDesktop">
+                <FieldLabel>@L["Filter"]</FieldLabel>
+                <TextEdit @bind-Text="GetListInput.Filter"/>
+            </Field>
+            <Field ColumnSize="ColumnSize.Is3.OnDesktop">
+                <FieldLabel>@L["Amount"]</FieldLabel>
+                <FieldBody>
+                    <Addons>
+                        <Addon AddonType="AddonType.Body">
+                            <NumericEdit TValue="decimal?" @bind-Value="@GetListInput.MinAmount"/>
+                        </Addon>
+                        <Addon AddonType="AddonType.Start">
+                            <AddonLabel>-</AddonLabel>
+                        </Addon>
+                        <Addon AddonType="AddonType.Body">
+                            <NumericEdit TValue="decimal?" @bind-Value="@GetListInput.MaxAmount"/>
+                        </Addon>
+                    </Addons>
+                </FieldBody>
+            </Field>
+            <Field ColumnSize="ColumnSize.Is3.OnDesktop">
+                <FieldLabel>@L["CreationTime"]</FieldLabel>
+                <DatePicker TValue="DateTime?"
+                            Dates="new []{GetListInput.MinCreationTime,GetListInput.MaxCreationTime}"
+                            DatesChanged="list => { GetListInput.MinCreationTime = list.FirstOrDefault(); GetListInput.MaxCreationTime = list.Skip(1).FirstOrDefault(); }"
+                            InputMode="DateInputMode.DateTime"
+                            SelectionMode="DateInputSelectionMode.Range"/>
+            </Field>
+            <Field ColumnSize="ColumnSize.IsAuto" Flex="Flex.AlignContent.End" Horizontal="true">
+                <FieldBody>
+                    <Button Type="ButtonType.Button" Clicked="() => GetListInput = new AccountEntryGetListInput()"
+                            Color="Color.Secondary">
+                        @L["Clear"]
+                    </Button>
+                    <Button Type="ButtonType.Button" Clicked="SearchEntitiesAsync"
+                            Color="Color.Primary">
+                        @L["Search"]
+                    </Button>
+                </FieldBody>
+            </Field>
+        </Fields>
+
+        @* ************************* DATA GRID ************************* *@
+        <AbpExtensibleDataGrid TItem="AccountEntryGetListOutput"
+                               Data="@Entities"
+                               ReadData="@OnDataGridReadAsync"
+                               TotalItems="@TotalCount"
+                               ShowPager="true"
+                               PageSize="@PageSize"
+                               CurrentPage="@CurrentPage"
+                               Columns="@Columns">
+        </AbpExtensibleDataGrid>
+    </CardBody>
+</Card>

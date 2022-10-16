@@ -1,0 +1,26 @@
+﻿@page "/Account/FinancialManagement/Accounts"
+
+@using Volo.Abp.BlazoriseUI.Components
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@using Full.Abp.FinancialManagement.Localization
+@using Full.Abp.IdentityManagement.Blazor.Components
+@using Full.Abp.FinancialManagement.Accounts
+@inject AbpBlazorMessageLocalizerHelper<FinancialManagementResource> LH
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+
+<Card>
+    <CardHeader>
+        @* ************************* PAGE HEADER ************************* *@
+        <PageHeader Title="@L[$"Accounts:My"]" BreadcrumbItems="@BreadcrumbItems"
+            Toolbar="@Toolbar">
+        </PageHeader>
+    </CardHeader>
+    <CardBody>
+        @* ************************* DATA GRID ************************* *@
+        <AbpExtensibleDataGrid TItem="AccountDto"
+                               Data="@Entities" 
+                               ReadData="@OnDataGridReadAsync"
+                               Columns="@Columns">
+        </AbpExtensibleDataGrid>
+    </CardBody>
+</Card>

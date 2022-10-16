@@ -1,0 +1,27 @@
+{
+  "culture": "en",
+  "texts": {
+    "AccountName": "Account name",
+    "Tenant": "Tenant",
+    "FinancialManagement": "Financial Management",
+    "SamplePageMessage": "A sample page for the FinancialManagement module",
+    "Menu:FinancialManagement:Accounts:Users": "User accounts",
+    "Menu:FinancialManagement:Accounts:Tenants": "Tenant accounts",
+    "Menu:FinancialManagement:Accounts:SystemAccount": "System accounts",
+    "Accounts:CashAccount": "Cash account",
+    "Accounts:Point": "Point account",
+    "Accounts:System": "System accounts",
+    "Accounts:My": "My accounts",
+    "NewAccount": "New account",
+    "Filter": "Filter",
+    "Amount": "Amount",
+    "PostBalance": "Post balance",
+    "CreationTime": "Creation time",
+    "Comments": "Comments",
+    "TransactionType": "Transaction type",
+    "TransactionId": "Transaction id",
+    "Increase": "Increase",
+    "Decrease": "Decrease",
+    "ViewEntries": "View entries"
+  }
+}

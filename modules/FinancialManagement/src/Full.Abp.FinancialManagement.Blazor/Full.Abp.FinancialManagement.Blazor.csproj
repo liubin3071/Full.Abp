@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Full.Abp.FinancialManagement.Blazor</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AutoMapper" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.Web.Theming" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="$(VoloAbpPackageVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\framework\src\Full.Abp.Finance\Full.Abp.Finance.csproj" />
+      <ProjectReference Include="..\..\..\IdentityManagement\src\Full.Abp.IdentityManagement.Blazor.Components\Full.Abp.IdentityManagement.Blazor.Components.csproj" />
+      <ProjectReference Include="..\..\..\TenantManagement\src\Full.Abp.TenantManagement.Blazor.Components\Full.Abp.TenantManagement.Blazor.Components.csproj" />
+      <ProjectReference Include="..\Full.Abp.FinancialManagement.Application.Contracts\Full.Abp.FinancialManagement.Application.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

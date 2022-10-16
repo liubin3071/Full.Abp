@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Full.Abp.FinancialManagement</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="$(MicrosoftEntityFrameworkCorePackageVersion)" />
+        <ProjectReference Include="..\..\src\Full.Abp.FinancialManagement.EntityFrameworkCore\Full.Abp.FinancialManagement.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="..\Full.Abp.FinancialManagement.TestBase\Full.Abp.FinancialManagement.TestBase.csproj" />
+    </ItemGroup>
+
+</Project>

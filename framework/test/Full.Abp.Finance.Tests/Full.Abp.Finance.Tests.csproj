@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="..\..\..\common.test.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Full.Abp.Finance.Test</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.TestBase" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.Autofac" Version="$(VoloAbpPackageVersion)" />
+
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+        <PackageReference Include="NSubstitute" Version="$(NSubstitutePackageVersion)" />
+        <PackageReference Include="Shouldly" Version="$(ShouldlyPackageVersion)" />
+        <PackageReference Include="xunit" Version="$(xUnitPackageVersion)" />
+        <PackageReference Include="xunit.extensibility.execution" Version="$(xUnitExtensibilityExecutionPackageVersion)" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="$(xUnitRunnerVisualStudioPackageVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Full.Abp.Finance\Full.Abp.Finance.csproj" />
+    </ItemGroup>
+
+</Project>

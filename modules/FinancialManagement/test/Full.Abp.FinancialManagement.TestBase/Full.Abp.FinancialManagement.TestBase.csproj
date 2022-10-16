@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <RootNamespace>Full.Abp.FinancialManagement</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(MicrosoftNETTestSdkPackageVersion)" />
+        <PackageReference Include="NSubstitute" Version="$(NSubstitutePackageVersion)" />
+        <PackageReference Include="Shouldly" Version="$(ShouldlyPackageVersion)" />
+        <PackageReference Include="xunit" Version="$(xUnitPackageVersion)" />
+        <PackageReference Include="xunit.extensibility.execution" Version="$(xUnitPackageVersion)" />
+        <PackageReference Include="xunit.runner.visualstudio" Version="$(xUnitPackageVersion)" />
+        <PackageReference Include="Volo.Abp.Autofac" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.Authorization" Version="$(VoloAbpPackageVersion)" />
+        <PackageReference Include="Volo.Abp.TestBase" Version="$(VoloAbpPackageVersion)" />
+        <ProjectReference Include="..\..\src\Full.Abp.FinancialManagement.Domain\Full.Abp.FinancialManagement.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

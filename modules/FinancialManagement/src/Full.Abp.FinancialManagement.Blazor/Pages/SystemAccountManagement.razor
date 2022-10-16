@@ -1,0 +1,85 @@
+﻿@page "/FinancialManagement/Accounts"
+
+@using Volo.Abp.BlazoriseUI.Components
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@using Full.Abp.FinancialManagement.Localization
+@using Full.Abp.IdentityManagement.Blazor.Components
+@using Full.Abp.FinancialManagement.Accounts
+@inject AbpBlazorMessageLocalizerHelper<FinancialManagementResource> LH
+@inherits Volo.Abp.AspNetCore.Components.AbpComponentBase
+<Card>
+    <CardHeader>
+        @* ************************* PAGE HEADER ************************* *@
+        <PageHeader Title="@L[$"Accounts:System"]" BreadcrumbItems="@BreadcrumbItems"
+            Toolbar="@Toolbar">
+        </PageHeader>
+    </CardHeader>
+    <CardBody>
+        @* ************************* DATA GRID ************************* *@
+        <AbpExtensibleDataGrid TItem="AccountDto"
+                               Data="@Entities" 
+                               ReadData="@OnDataGridReadAsync"
+                               Columns="@Columns">
+        </AbpExtensibleDataGrid>
+    </CardBody>
+</Card>
+
+@if (HasIncreasePermission)
+{
+    <Modal @ref="IncreaseModal" Closing="@ClosingIncreaseModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["Increase"]</ModalTitle>
+                    <CloseButton Clicked="CloseIncreaseModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@IncreaseValidationsRef" Model="@IncreaseEntity" ValidateOnLoad="false">
+                        <Field>
+                            <FieldLabel>@L["Amount"]</FieldLabel>
+                            <NumericEdit TValue="decimal" @bind-Value="@IncreaseEntity.Amount"/>
+                        </Field>
+                        <Field>
+                            <FieldLabel>@L["Comments"]</FieldLabel>
+                            <TextEdit @bind-Text="@IncreaseEntity.Comments"/>
+                        </Field>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseIncreaseModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@IncreaseAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}
+
+@if (HasDecreasePermission)
+{
+    <Modal @ref="DecreaseModal" Closing="@ClosingDecreaseModal">
+        <ModalContent Centered="true">
+            <Form>
+                <ModalHeader>
+                    <ModalTitle>@L["Decrease"]</ModalTitle>
+                    <CloseButton Clicked="CloseDecreaseModalAsync"/>
+                </ModalHeader>
+                <ModalBody>
+                    <Validations @ref="@DecreaseValidationsRef" Model="@DecreaseEntity" ValidateOnLoad="false">
+                        <Field>
+                            <FieldLabel>@L["Amount"]</FieldLabel>
+                            <NumericEdit TValue="decimal" @bind-Value="@DecreaseEntity.Amount"/>
+                        </Field>
+                        <Field>
+                            <FieldLabel>@L["Comments"]</FieldLabel>
+                            <TextEdit @bind-Text="@DecreaseEntity.Comments"/>
+                        </Field>
+                    </Validations>
+                </ModalBody>
+                <ModalFooter>
+                    <Button Color="Color.Secondary" Clicked="CloseDecreaseModalAsync">@L["Cancel"]</Button>
+                    <SubmitButton Clicked="@DecreaseAsync"/>
+                </ModalFooter>
+            </Form>
+        </ModalContent>
+    </Modal>
+}

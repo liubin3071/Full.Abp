@@ -1,0 +1,32 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "FinancialManagement": "财务管理",
+    "MyAccount": "我的账户",
+    "AccountName": "账户名称",
+    "SamplePageMessage": "FinancialManagement模块的示例页面",
+    "Menu:FinancialManagement:Accounts:Users": "用户账户",
+    "Menu:FinancialManagement:Accounts:Tenants": "租户账户",
+    "Menu:FinancialManagement:Accounts:SystemAccount": "系统账户",
+    "NewAccount": "创建账户",
+    "Accounts:CashAccount": "现金账户",
+    "Accounts:Point": "积分账户",
+    "Accounts:System": "系统账户",
+    "Accounts:My": "我的账户",
+    "AccountAlreadyExists": "账户已存在",
+    "User": "用户",
+    "Tenant": "租户",
+    "Balance": "余额",
+    "IsEnabled": "是否启用",
+    "Filter": "过滤",
+    "Amount": "金额",
+    "PostBalance": "新余额",
+    "CreationTime": "创建时间",
+    "Comments": "备注",
+    "TransactionType": "业务类型",
+    "TransactionId": "业务Id",
+    "Increase": "增加",
+    "Decrease": "减少",
+    "ViewEntries": "查看明细"
+  }
+}

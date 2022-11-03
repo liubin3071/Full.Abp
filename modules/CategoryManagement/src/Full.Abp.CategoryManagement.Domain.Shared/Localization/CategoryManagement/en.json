@@ -4,6 +4,7 @@
     "CategoryManagement": "Category management",
     "Permission:CategoryManagement": "Category management",
     "Name": "Name",
-    "Sequence": "Sequence"
+    "Sequence": "Sequence",
+    "Category:DisplayName:Demo": "Demo类别"
   }
 }

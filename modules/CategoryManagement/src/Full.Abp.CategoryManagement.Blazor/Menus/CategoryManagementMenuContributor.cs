@@ -45,10 +45,12 @@ public class CategoryManagementMenuContributor : IMenuContributor
                       .Where(c => c.MultiTenancySides.HasFlag(multiTenancySide)))
          {
              categoryMenu.AddItem(new ApplicationMenuItem(categoryDefinition.Name,
-                 l[categoryDefinition.Name], url: $"/CategoryManagement/{categoryDefinition.Name}",
+                 categoryDefinition.DisplayName.Localize(context.StringLocalizerFactory), url: $"/CategoryManagement/{categoryDefinition.Name}",
                  requiredPermissionName: $"CategoryManagement.{categoryDefinition.Name}"));
          }
 
          return Task.CompletedTask;
     }
+    
+    
 }

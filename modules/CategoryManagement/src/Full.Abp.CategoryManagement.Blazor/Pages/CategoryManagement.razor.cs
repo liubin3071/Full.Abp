@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Blazorise;
 using Full.Abp.Categories;
+using Full.Abp.Categories.Definitions;
 using Full.Abp.CategoryManagement.Localization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -18,6 +19,9 @@ namespace Full.Abp.CategoryManagement.Blazor.Pages;
 public partial class CategoryManagement
 {
     [Parameter] public string CategoryDefinitionName { get; set; }
+    
+    [Inject] public ICategoryDefinitionManager CategoryDefinitionManager { get; set; }
+    
     protected int? TotalCount;
     public int PageCount => (int)Math.Ceiling((TotalCount ?? 1d) / PageSize);
     protected virtual int PageSize { get; } = LimitedResultRequestDto.DefaultMaxResultCount;

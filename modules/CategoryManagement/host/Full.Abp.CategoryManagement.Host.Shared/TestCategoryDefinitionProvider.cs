@@ -8,9 +8,9 @@ public class TestCategoryDefinitionProvider : CategoryDefinitionProvider
 {
     public override void Define(ICategoryDefinitionContext context)
     {
-        context.Add(new CategoryDefinition("DemoCat","Category:DemoCat"));
+        context.Add(new CategoryDefinition("Demo",L("Category:DisplayName:Demo")));
     }
-        
+    
     private static LocalizableString L(string name)
     {
         return LocalizableString.Create<CategoryManagementResource>(name);

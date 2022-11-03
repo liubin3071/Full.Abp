@@ -6,6 +6,7 @@
     "Category": "类别",
     "Categories": "类别",
     "Name": "名称",
-    "Sequence": "顺序"
+    "Sequence": "顺序",
+    "Category:DisplayName:Demo": "Demo类别"
   }
 }

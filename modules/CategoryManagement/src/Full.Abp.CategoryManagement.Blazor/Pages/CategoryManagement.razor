@@ -12,7 +12,7 @@
 <Card>
     <CardHeader>
         @* ************************* PAGE HEADER ************************* *@
-        <PageHeader Title="@L[CategoryDefinitionName]"
+        <PageHeader Title="@(CategoryDefinitionManager.Get(CategoryDefinitionName).DisplayName.Localize(StringLocalizerFactory))"
                     BreadcrumbItems="@BreadcrumbItems"
                     Toolbar="@Toolbar">
         </PageHeader>

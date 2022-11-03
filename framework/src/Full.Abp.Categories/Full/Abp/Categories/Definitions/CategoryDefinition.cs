@@ -13,7 +13,11 @@ public class CategoryDefinition
     
     public MultiTenancySides MultiTenancySides { get; set; }
 
-    public string DisplayName { get; set; }
+    private ILocalizableString _displayName;
+    public ILocalizableString DisplayName {
+        get => _displayName;
+        set => _displayName = Check.NotNull(value, nameof(value));
+    }
     
     public object this[string name] {
         get => Properties.GetOrDefault(name);
@@ -29,12 +33,12 @@ public class CategoryDefinition
     }
 
     public CategoryDefinition(string name,
-        string? displayName = null,
+        ILocalizableString? displayName = null,
         MultiTenancySides multiTenancySide = MultiTenancySides.Both
     )
     {
         Name = Check.NotNull(name, nameof(name));
-        DisplayName = displayName ?? name;
+        DisplayName = displayName ?? new FixedLocalizableString(name);
         MultiTenancySides = multiTenancySide;
         Properties = new Dictionary<string, object>();
     }

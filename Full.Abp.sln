@@ -277,6 +277,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full.Abp.IdentityManagement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full.Abp.TenantManagement.Blazor.Components", "modules\TenantManagement\src\Full.Abp.TenantManagement.Blazor.Components\Full.Abp.TenantManagement.Blazor.Components.csproj", "{A066457D-3752-4EB2-A032-4B057ACD1F42}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Full.Abp.Finance.Tests", "framework\test\Full.Abp.Finance.Tests\Full.Abp.Finance.Tests.csproj", "{737D97D1-0F9D-43C4-9029-B984920E393E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -683,6 +685,10 @@ Global
 		{A066457D-3752-4EB2-A032-4B057ACD1F42}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A066457D-3752-4EB2-A032-4B057ACD1F42}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A066457D-3752-4EB2-A032-4B057ACD1F42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{737D97D1-0F9D-43C4-9029-B984920E393E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{737D97D1-0F9D-43C4-9029-B984920E393E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{737D97D1-0F9D-43C4-9029-B984920E393E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{737D97D1-0F9D-43C4-9029-B984920E393E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{834DCCAC-320C-473C-BFB3-CFAA4D30A3A2} = {184FCDC8-F75F-4464-A47A-2D92FF6A63E6}
@@ -820,5 +826,6 @@ Global
 		{111B4F08-8B45-4782-8F54-B1A78DB61D17} = {39EF8161-CEAC-4EF4-9ABF-EC96EBDDC570}
 		{74F20FE6-F7E9-47D0-8F1F-356431AD17E0} = {EE37C3CA-4CE0-41AD-BC79-9DB1C6A68516}
 		{A066457D-3752-4EB2-A032-4B057ACD1F42} = {389A79AF-A17C-4043-BC4E-FC1312F273C8}
+		{737D97D1-0F9D-43C4-9029-B984920E393E} = {78EB69E0-0AA6-4EEA-B430-85C22519B8E1}
 	EndGlobalSection
 EndGlobal
